@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# enviroment file
+/.env
+
+# webpack config 
+/webpack.config.js
+

@@ -1,0 +1,30 @@
+if((token&&masterPassword) &&(token!==cookieToken || masterPassword!==cookieMasterPassword)){
+            // triggered if token and master password do not match cookie value of token and master password 
+        }
+
+        if((!token || !masterPassword) && (cookieToken&&cookieMasterPassword) ){
+            // if token or master password not present and cookie storing token and master password exists 
+            setToken(cookieToken);
+            setMasterPassword(cookieMasterPassword);
+            setIsAuthenticated(true);
+        }
+
+        if(!token && !masterPassword){
+            console.log(`INITIAL MOUNT OF NON LOGGED IN USER`)
+            // triggered if there is no token and master password present . Runs on initial mount when user is not logged in 
+            setToken(null); // token set to null
+            setMasterPassword(null); // encrypted master password set to null
+            setIsAuthenticated(false); // isAuthenticated state is set to false 
+            setUser(null); // setUser is set to null 
+        }
+
+        if(token && masterPassword){
+            // triggered if token and master password both exist  
+            setToken(token);
+            setMasterPassword(masterPassword);
+            setIsAuthenticated(true);
+        }
+
+
+
+    },[token,masterPassword]); // runs on initial render(initial mount) and every update 

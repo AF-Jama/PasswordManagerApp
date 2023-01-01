@@ -1,0 +1,7 @@
+password manager ideas
+
+- Create login using email and password 
+- Next page should prompt new user for a master password that will be used to encrypt stored passwords
+- Passwords stored against user master password (one master password can have many encrypted password 1:m) whereas encrypted passwords can have one master password
+- Add,edit and delete action butttons
+- Responsiveness mobile first design

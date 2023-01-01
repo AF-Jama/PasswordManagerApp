@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --maxWidth:1300px;
+}
+
+#header-outer-container{
+    background-color: green;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    /* min-height: 1vh; */
+    border: 2px solid red;
+    background-color: black;
+}
+
+#logo-container{
+    /* margin-top: 0.3rem; */
+}
+
+@media screen and (min-width:800px){
+    header{
+        display: flex;
+        width: 90vw; /*width 90vw*/
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between  ;
+        max-width:var(--maxWidth);
+        margin: 0 auto;
+    }
+
+    #logo-container{
+        margin-left: 0.5rem;
+    }
+}

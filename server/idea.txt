@@ -1,0 +1,10 @@
+- Create backend with relevant endpoints for 
+    -> /Create
+    -> /login currently using getAuthHash controller, which compares the local authKey to the hashed authKey stored in the auth db table
+    -> /update -> which update the users master password
+
+- Backend is split into controllers dirs User(which handles user logic) and Passwords(which handles password logic)
+
+login
+    user logs in with unique email,username and a masterpassword.
+    vaultkey(hash of masterpassword appended with email) is created on client and authKey is derived from a hash of the vault key and master password appended togetho.Auth key is then persisted on db table Auth model which is hashed and salted 

@@ -1,0 +1,5 @@
+Routes directory which is responsible for different endpoints behaviours such as:
+
+'/users' -> Handles user endpoints 
+'/passwords' -> Handles passwords endpoints
+

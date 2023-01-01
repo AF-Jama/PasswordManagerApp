@@ -1,0 +1,5 @@
+// token secret
+
+const TOKEN_SECRET = "673d0b35fcd2c89fdd49a18fe4a54325c872605b4bd00bb4314ff266d4c17a1f0c4659b7eb1758a2cb3637b2f568ca3ee808d72c3f924beb88797dc398568403";
+
+export default TOKEN_SECRET;

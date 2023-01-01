@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id Int @id @default(autoincrement()) // primary key
+  userName String @db.Char(50) @unique  // unique username
+  email String @unique // unique email
+  createdAt DateTime @default(now()) // datetime that user is created
+  auth Auth? // user has one auth string
+}
+
+model Auth{
+  id Int @id @default(autoincrement()) // auth string primary key 
+  authKey String @unique @db.Char(88) // auth string storage using 88 bytes CHAR of storage 
+  owner User @relation(fields: [userId],references: [id],onDelete: Cascade) // creating relation between User and Auth table to create (1:1) relationship 
+  userId Int @unique // userId which references User model which creates 1:1 relation
+  lastUpdated DateTime?
+  encryptedPassword EncPassword[] // auth has many encrypted password associated with it
+}
+
+model EncPassword{
+  id Int @id @default(autoincrement()) // encrypted password primary id 
+  siteName String // site name
+  encPassword String @db.Char(64) // encrypted password storage 
+  auth Auth @relation(fields: [authId],references: [id],onDelete: Cascade) // creating relation between auth and encrypted password 
+  authId Int // authId which references Auth model primary key
+}

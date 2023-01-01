@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --maxWidth:1500px;
+}
+
+#sign-up-container{
+    min-height: 100vh;
+}
+
+
+@media screen and (min-width:800px){
+    #sign-up-inner-container{
+        width: 90vw;
+        max-width: var(--maxWidth);
+        height: 100%;
+        border: 2px solid red;
+    }
+}
