@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --maxWidth:1300px;
+}
+
+header{
+    width: auto;
+    min-height: 3vh;
+}
+
+#inner-header-container{
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+@media screen and (min-width:800px){
+    #inner-header-container{
+        width: 90vw;
+        margin: 0 auto; /* centers inner container */
+        max-width: var(--maxWidth);
+    }
+}

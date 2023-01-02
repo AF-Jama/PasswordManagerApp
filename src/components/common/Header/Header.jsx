@@ -1,21 +1,23 @@
 import React from "react";
 import NavBar from "../NavBar";
 import RegisterForm from "../../RegisterForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 import './Header.css';
 
 const Header = (props)=>{
 
     return (
-        <div id="header-outer-container">
-            <header id="header-container">
+        <header id="header-container">
+            <div id="inner-header-container">
                 <div id="logo-container">
-                    <h5><a href="#">Password Manager</a></h5>
+                    <h4><a href="#">Password Manager</a></h4>
                 </div>
 
                 <NavBar/>
+            </div>
 
-            </header>
-        </div>
+        </header>
     )
 }
 

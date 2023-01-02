@@ -8,36 +8,47 @@
     --maxWidth:1300px;
 }
 
-#header-outer-container{
+/* #header-outer-container{
     background-color: green;
-}
+} */
 
 header{
+    width: auto;
+    min-height: 2vh;
+}
+
+#inner-header-container{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    /* min-height: 1vh; */
-    border: 2px solid red;
-    background-color: black;
+    justify-content: flex-start;
 }
 
 #logo-container{
     /* margin-top: 0.3rem; */
+    position: relative;
+    top: -15px;
 }
 
+h4::after{
+    content: url('../../../assets/lock.svg');
+}
+
+
 @media screen and (min-width:800px){
-    header{
+    #inner-header-container{
         display: flex;
-        width: 90vw; /*width 90vw*/
+        /* border: 2px solid red; */
         flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        justify-content: space-between  ;
-        max-width:var(--maxWidth);
+        width: 90vw;
         margin: 0 auto;
+        max-width: var(--maxWidth);
     }
 
     #logo-container{
-        margin-left: 0.5rem;
+        position: relative;
+        top: -10px;
     }
 }

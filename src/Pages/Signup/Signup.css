@@ -10,14 +10,27 @@
 
 #sign-up-container{
     min-height: 100vh;
+    border: 2px solid green;
+}
+
+#sign-up-page-image{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#img-container{
+    display: none;
+}
+
+#main-inner-container{
+    margin-top:2.5rem;
 }
 
 
 @media screen and (min-width:800px){
-    #sign-up-inner-container{
+    #main-inner-container{
         width: 90vw;
         max-width: var(--maxWidth);
-        height: 100%;
-        border: 2px solid red;
+        margin: 0 auto;
     }
 }

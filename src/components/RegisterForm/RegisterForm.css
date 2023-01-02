@@ -4,10 +4,34 @@
     box-sizing: border-box;
 }
 
+:root{
+    --maxWidth:100px;
+}
+
 #form-container{
-    border: 2px solid red;
-    display: block;
+    /* border: 2px solid red; */
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    /* border: 2px solid yellow; */
     width: auto;   
+}
+
+.input-group{
+    /* width: 90%;
+    max-width: var(--maxWidth) ;
+    margin: 0 auto; */
+    display: block;
+    width: auto;
+    /* border: 2px solid red; */
+}
+
+.input-text-form{
+    width: 90%;
+    margin: 0 auto;
+}
+
+#submit-btn{
 }
 
 #submit-btn:disabled{

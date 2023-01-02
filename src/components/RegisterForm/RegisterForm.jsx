@@ -4,6 +4,7 @@ import {useForm} from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import createVaultKey,{createAuthKey} from "../../utils";
 import './RegisterForm.css';
+import { clear } from "@testing-library/user-event/dist/clear";
 
 const RegisterForm = (props)=>{
     const { register,handleSubmit,resetField,setError,clearErrors,unregister,formState:{errors}} = useForm({
@@ -23,8 +24,9 @@ const RegisterForm = (props)=>{
     console.log(errors);
 
     const onFormSubmit = async (data)=>{
+        clearErrors('username');
+        clearErrors('email');
         console.log("SUCCESFUL SUBMITTED")
-        setError()
         // // trigerred when form is valid
         const {username,email,master_password} = data; // data object is destructured to expose username,email and master_password
 
@@ -169,7 +171,7 @@ const RegisterForm = (props)=>{
     return (
         <form id="form-container" onSubmit={handleSubmit(onFormSubmit)}>
             <div className="input-group">
-                <input type="text" {...register('username',{
+                <input type="text" className="input-text-form" {...register('username',{
                     minLength:5,
                     maxLength:50,
                     required:true,
@@ -180,7 +182,7 @@ const RegisterForm = (props)=>{
             </div>
 
             <div className="input-group">
-                <input type="email" {...register('email',{
+                <input type="email" className="input-text-form" {...register('email',{
                     required:"Email is required",
                     pattern:{
                         value:/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -193,7 +195,7 @@ const RegisterForm = (props)=>{
             </div>
 
             <div className="input-group">
-                <input type="password" {...register('master_password',{
+                <input type="password" className="input-text-form" {...register('master_password',{
                     minLength:12,
                     maxLength:50, 
                     required:true,
