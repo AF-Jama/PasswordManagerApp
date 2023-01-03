@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --maxWidth:1500px;
+}
+
+#logout-container{
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    background-color: #001f3f !important;
+}
+
+main{
+    flex:1;
+}
+
+#main-outer-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+#main-inner-container{
+    position: relative;
+    top: -110px;
+    /* border: 2px solid blue; */
+    padding: 2rem;
+    max-width: var(--maxWidth);
+}
+
+#login-form-container{
+    display:block;
+    width: auto ;
+    /* border: 2px solid red; */
+    padding: 1rem;
+}
+
+@media screen and (min-width:500px){
+
+}
+

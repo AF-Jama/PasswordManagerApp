@@ -40,13 +40,15 @@ const login = async (req,res)=>{
             httpOnly:true,
         }) // stores jwt token in httpOnly cookie which is sent in each subsequent request      
         return res.json({
-            msg:"login succesful"
+            msg:"login succesful",
+            statusCode:200
         }).status(200)
         console.log("SUCCESS")
     }catch(error){
         console.log(error);
         return res.json({
-            msg:"login error",           
+            msg:"login error", 
+            statusCode:400          
         }).status(400)
     }
 }

@@ -5,6 +5,7 @@ import PasswordComponent from './components/PasswordComponent';
 import SignUp from './Pages/Signup';
 import Login from './Pages/Login';
 import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
 import NavBar from './components/common/NavBar';
 import Header from './components/common/Header';
 import logo from './logo.svg';
@@ -18,7 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Header/>}/>
         <Route path='/signup' element={<SignUp/>}/>
-        <Route path='/login' element={<RegisterForm/>}/>
+        <Route path='/login' element={<Login/>}/>
       </Routes>
     </div>
   );

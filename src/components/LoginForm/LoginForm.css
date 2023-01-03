@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form{
+    display: block;
+    /* border: 2px solid purple; */
+    padding: 1rem 0;
+}
+
+.input-group{
+    width: 100%;
+    display: block;
+    width: auto;
+}
+
+.input-text-form{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#submit-btn{
+    padding: 0.5rem 2.7rem;
+    border-radius: 5px;
+    background-color: #1A486E;
+    cursor:pointer;
+    color: black;
+    border: 0;
+}
+
+@media screen and (min-width:500px){
+    .input-group{
+        width: 80%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}

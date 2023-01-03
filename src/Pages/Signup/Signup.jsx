@@ -14,7 +14,7 @@ const SignUp = ()=>{
             <Header/>
             <main id="main-outer-container">
                 <div id="main-inner-container">
-                    <div id="form-container">
+                    <div id="register-form-container">
                         <RegisterForm/>
                     </div>
                     <div id="img-container">

@@ -41,7 +41,9 @@ const RegisterForm = (props)=>{
             let res = await createUser(username,email,authKey);
 
             if(res.statusCode===201){
-                window.location = 'http://bbc.co.uk'
+                // window.location = 'http://bbc.co.uk'
+                console.log("SIGNED UP");
+                return;
             }
             else if(res.statusCode!==201){
                 console.log("ERROR WHEN CREATING USER or user already exists")

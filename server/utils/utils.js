@@ -1,4 +1,4 @@
-import {hash,compare} from 'bcrypt'
+import {hash,compare} from 'bcrypt';
 
 
 const SALTROUNDS = 10;
@@ -24,8 +24,9 @@ const hashAuthKey = async (authKey)=>{
     return hashs; // return hashs and salt to be stored against db auth table
 }
 
-const  verifyAuth = async (authKey,hashedAuthKey) =>{
+const verifyAuth = async (authKey,hashedAuthKey) =>{
     // verifies auth password with hashed auth key 
+    console.log(`MATCH VALUE IS ${await compare(authKey,hashedAuthKey)}`);
   return await compare(authKey,hashedAuthKey); // returns boolean 
 }//closes verifyPassword
 

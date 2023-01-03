@@ -1,4 +1,4 @@
-import {hash} from 'bcryptjs'
+import {hash} from 'bcryptjs';
 // import { decode } from 'jsonwebtoken';
 // const {hash} = require('bcrypt')
 
@@ -33,4 +33,4 @@ export{
     createAuthKey,
 };
 
-createAuthKey('sdskdjfd','klsdmdjkdsd').then(hash=>console.log(hash))
+// createAuthKey('sdskdjfd','klsdmdjkdsd').then(hash=>console.log(hash))

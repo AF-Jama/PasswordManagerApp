@@ -7,6 +7,7 @@ const createUser = async (req,res)=>{
     try{
         const {userName,email,authKey} = req.body; // destructures req body 
         const authHashKey = await hashAuthKey(authKey); // auth key hash which is stored subsequently in the auth table model
+        console.log(authHashKey);
         const user = await prisma.user.create({
             data:{
                 userName:userName,
@@ -19,7 +20,7 @@ const createUser = async (req,res)=>{
             }
         })
         await prisma.$disconnect()
-        console.log(`Auth key is ${authKey}`);
+        
         return res.json({
             statusCode:201,
             userName:userName,
