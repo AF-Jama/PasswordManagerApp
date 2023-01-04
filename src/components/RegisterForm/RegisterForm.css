@@ -1,11 +1,12 @@
 *{
-    margin:0;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 :root{
-    --maxWidth:100px;
+    --maxWidth:300px;
+    --inputMaxWidth:300px;
 }
 
 #form-container{
@@ -17,21 +18,11 @@
     display: block;
     width: auto;   
     padding: 1rem 0;
-    /* border: 1px solid red; */
+    border: 1px solid red;
 }
 
 .input-group{
-    /* width: 90%;
-    max-width: var(--maxWidth) ;
-    margin: 0 auto; */
-    display: block;
-    width: auto;
-    /* border: 2px solid red; */
-}
-
-.input-text-form{
-    width: 90%;
-    margin: 0 auto;
+    width: auto ;
 }
 
 #submit-btn{
@@ -47,23 +38,4 @@
     /* disabled button default style */
     background-color: #CDCDCD;
     color: black;
-}
-
-@media screen and (min-width:500px){
-    .input-group{
-        width: 80%;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-}
-
-@media screen and (min-width:800px){
-    #form-container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        flex: 1;
-    }
-
 }

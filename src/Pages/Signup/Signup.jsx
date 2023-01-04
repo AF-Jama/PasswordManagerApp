@@ -14,6 +14,9 @@ const SignUp = ()=>{
             <Header/>
             <main id="main-outer-container">
                 <div id="main-inner-container">
+                    <div id="register-text-container">
+                        <h2>Create an account</h2>
+                    </div>
                     <div id="register-form-container">
                         <RegisterForm/>
                     </div>

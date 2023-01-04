@@ -6,6 +6,7 @@
 
 :root{
     --maxWidth:1500px;
+    --cardMaxWidth:700px;
 }
 
 #logout-container{
@@ -20,18 +21,20 @@ main{
 }
 
 #main-outer-container{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    place-items: center;
+    flex: 1;
+    /* flex-direction: column;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 2rem; */
 }
 
 #main-inner-container{
-    position: relative;
-    top: -110px;
-    /* border: 2px solid blue; */
-    padding: 2rem;
-    max-width: var(--maxWidth);
+    height: auto;
+    color: white;
+    width: 80%;   
+    max-width: var(--cardMaxWidth); 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1 );
 }
 
 #login-form-container{
@@ -39,6 +42,20 @@ main{
     width: auto ;
     /* border: 2px solid red; */
     padding: 1rem;
+}
+
+#welcome-container>h2{
+    font-weight: bold;
+}
+
+#welcome-container>h2::after{
+    content: '';
+    display: block;
+    height: 1px;
+    width: 8rem;
+    background-color: white;
+    margin: 0rem auto;
+    margin-top: 1rem;
 }
 
 @media screen and (min-width:500px){

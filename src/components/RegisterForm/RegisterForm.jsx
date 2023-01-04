@@ -4,7 +4,6 @@ import {useForm} from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import createVaultKey,{createAuthKey} from "../../utils";
 import './RegisterForm.css';
-import { clear } from "@testing-library/user-event/dist/clear";
 
 const RegisterForm = (props)=>{
     const { register,handleSubmit,resetField,setError,clearErrors,unregister,formState:{errors}} = useForm({

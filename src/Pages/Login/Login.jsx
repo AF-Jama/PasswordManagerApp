@@ -13,7 +13,10 @@ const Login = (props)=>{
             <Header/>
 
             <main id="main-outer-container">
-                <div id="main-inner-container" style={{display:"block"}}>
+                <div id="main-inner-container">
+                    <div id="welcome-container">
+                        <h2>Login</h2>
+                    </div>
                     <div id="login-form-container">
                         <LoginForm/>
                     </div>
