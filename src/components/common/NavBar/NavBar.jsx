@@ -38,7 +38,7 @@ const NavBar = (props)=>{
                 <a href="#" className="nav-links">Home</a>
                 <a href="#" className="nav-links">About</a>
                 <a href="#" className="nav-links">Your Passwords</a>
-                {token?<ActionButton text="Logout" style={{padding:"0.5rem 2.5rem",width:"100px"}}/>:<ActionButton text="Login" style={{padding:"0.5rem 2.5rem",width:"100px"}}/>}
+                {token?<a href="#"><ActionButton text="Logout" style={{padding:"0.5rem 2.5rem",width:"100px"}}/></a>:<a href="/login"><ActionButton text="Login" style={{padding:"0.5rem 2.5rem",width:"100px"}}/></a>}
             </div>
 
             {/* <div id="action-button-container">

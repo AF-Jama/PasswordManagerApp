@@ -18,11 +18,13 @@
     display: block;
     width: auto;   
     padding: 1rem 0;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .input-group{
+    display: block;
     width: auto ;
+    /* background-color: red; */
 }
 
 #submit-btn{
@@ -38,4 +40,8 @@
     /* disabled button default style */
     background-color: #CDCDCD;
     color: black;
+}
+
+.login-text{
+    margin-top: 1rem;
 }

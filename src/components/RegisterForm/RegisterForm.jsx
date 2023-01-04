@@ -206,6 +206,7 @@ const RegisterForm = (props)=>{
             </div>
 
             <input id="submit-btn" type="submit" value="Submit" ref={submitButtonRef}/>
+            <p className="login-text">Already have an account? <a href="#">Login here</a></p>
         </form>
     )
 }
