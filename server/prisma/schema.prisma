@@ -21,6 +21,7 @@ model User{
 model Auth{
   id Int @id @default(autoincrement()) // auth string primary key 
   authKey String @unique @db.Char(88) // auth string storage using 88 bytes CHAR of storage 
+  salt String // 5 string 
   owner User @relation(fields: [userId],references: [id],onDelete: Cascade) // creating relation between User and Auth table to create (1:1) relationship 
   userId Int @unique // userId which references User model which creates 1:1 relation
   lastUpdated DateTime?

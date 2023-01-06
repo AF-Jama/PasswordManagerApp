@@ -4,6 +4,8 @@ import HomeComponent from './components/HomeComponent';
 import PasswordComponent from './components/PasswordComponent';
 import SignUp from './Pages/Signup';
 import Login from './Pages/Login';
+import Main from './Pages/Main';
+import Card from './components/Card';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import NavBar from './components/common/NavBar';
@@ -20,6 +22,8 @@ function App() {
         <Route path='/' element={<Header/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/passwords' element={<Main/>}/>
+        <Route path='/card' element={<Card/>}/>
       </Routes>
     </div>
   );

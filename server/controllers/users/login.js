@@ -19,9 +19,11 @@ const login = async (req,res)=>{
             }
         })
         console.log(`User is ${user}`)
+        console.log(user);
         const hashedAuthKey = user.auth.authKey; // returns hashed auth key from db
+        const salt = user.auth.salt; // returns random 5 character salt 
         
-        if(!await verifyAuth(authKey,hashedAuthKey)) throw new Error("No match between auth key and hashed auth key") // verifies auth key against hashed auth key, throws error which triggers catch block
+        if(!verifyAuth(authKey,hashedAuthKey,salt)) throw new Error("No match between auth key and hashed auth key") // verifies auth key against hashed auth key, throws error which triggers catch block
           
         const payload = {
             // creates payload object which is signed to create a json web token (jwt)

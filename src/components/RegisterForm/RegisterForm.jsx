@@ -26,6 +26,7 @@ const RegisterForm = (props)=>{
         clearErrors('username');
         clearErrors('email');
         console.log("SUCCESFUL SUBMITTED")
+        console.log(`Hash on form submit is ${authKey}`);
         // // trigerred when form is valid
         const {username,email,master_password} = data; // data object is destructured to expose username,email and master_password
 
@@ -158,16 +159,21 @@ const RegisterForm = (props)=>{
 
         // creating authKey which will be used to access vault 
 
-        createVaultKey(email,event.target.value) // returns promise 
-        .then(vaultKey=>createAuthKey(vaultKey,event.target.value)) // .then chain handles promise and createAuthKey returns promise
-        .then(authKey=>setAuthKey(authKey)); // .then handles promise and setAuthKey
+        // createVaultKey(email,event.target.value) // returns promise 
+        // .then(vaultKey=>createAuthKey(vaultKey,event.target.value)) // .then chain handles promise and createAuthKey returns promise
+        // .then(authKey=>setAuthKey(authKey)); // .then handles promise and setAuthKey
+
+        let vaultKey = createVaultKey(email,event.target.value);
+        let authKey = createAuthKey(vaultKey,event.target.value);
+
+        setAuthKey(authKey); // sets auth key
     }
 
     console.log(errors)
 
     console.log(username);
     console.log(email);
-    console.log(authKey);
+    // console.log(authKey);
 
     return (
         <form id="form-container" onSubmit={handleSubmit(onFormSubmit)}>
@@ -206,7 +212,7 @@ const RegisterForm = (props)=>{
             </div>
 
             <input id="submit-btn" type="submit" value="Submit" ref={submitButtonRef}/>
-            <p className="login-text">Already have an account? <a href="#">Login here</a></p>
+            <p className="login-text">Already have an account? <a href="/login">Login here</a></p>
         </form>
     )
 }

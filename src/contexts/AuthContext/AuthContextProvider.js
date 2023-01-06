@@ -1,12 +1,7 @@
 import React,{useEffect,useState} from "react";
-import Cookies from 'universal-cookie';
+import Cookies from "js-cookie";
 // import { decodeToken } from "../../utils";
 import authContext from "./AuthContext";
-
-const cookie = new Cookies(); // instantiates cookie object 
-
-
-
 
 const AuthContextProvider = ({children})=>{
     // state which will be passed down children components as context provider values
@@ -42,36 +37,36 @@ const AuthContextProvider = ({children})=>{
     //     // return jwtDecode(token);
     // }
 
-    useEffect(()=>{
-        console.log("HERE")
-        const cookieToken = cookie.get('token'); // returns cookie token if exists or returns null
-        const cookieMasterPassword = cookie.get('master_password'); // returns hashed master password used as key to encrypt and decrypt passwords
+    // useEffect(()=>{
+    //     console.log("HERE")
+    //     const cookieToken = Cookies.get(); // returns cookie token if exists or returns null
+    //     const cookieMasterPassword = Cookies.get('master_password'); // returns hashed master password used as key to encrypt and decrypt passwords
 
-        if((!token||!masterPassword) && (cookieToken && cookieMasterPassword)){
-            // triggered if cookie token or cookie master password exist but token or master password does not exist
-            login(cookieToken,cookieMasterPassword);
-        }
+    //     if((!token||!masterPassword) && (cookieToken && cookieMasterPassword)){
+    //         // triggered if cookie token or cookie master password exist but token or master password does not exist
+    //         login(cookieToken,cookieMasterPassword);
+    //     }
 
-        if((token&&masterPassword) && (token===cookieToken && masterPassword===cookieMasterPassword)){
-            // triggered if token and master password exist and match cookie values meaning user is logged in
-            login(token,masterPassword);
-        }
+    //     if((token&&masterPassword) && (token===cookieToken && masterPassword===cookieMasterPassword)){
+    //         // triggered if token and master password exist and match cookie values meaning user is logged in
+    //         login(token,masterPassword);
+    //     }
 
-        if((!token&&!masterPassword) && (!cookieToken && !cookieMasterPassword)){
-            // on initial render (on mount) 
-            logout();
-        }
+    //     if((!token&&!masterPassword) && (!cookieToken && !cookieMasterPassword)){
+    //         // on initial render (on mount) 
+    //         logout();
+    //     }
 
-        if((!token||!masterPassword) && (!cookieToken||!cookieMasterPassword)){
-            // if cookie token or cookie master password does not exist and cookie does not exist
-            logout();
-        }
+    //     if((!token||!masterPassword) && (!cookieToken||!cookieMasterPassword)){
+    //         // if cookie token or cookie master password does not exist and cookie does not exist
+    //         logout();
+    //     }
         
 
 
 
 
-    },[token,masterPassword]); // runs on initial render(initial mount) and every update 
+    // },[token,masterPassword]); // runs on initial render(initial mount) and every update 
 
     return (
         <authContext.Provider value={{token,masterPassword,isAuthenticated,user,login,logout}}> 

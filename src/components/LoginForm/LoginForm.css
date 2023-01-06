@@ -19,6 +19,7 @@ form{
 .input-text-form{
     width: 100%;
     margin: 0 auto;
+    color: black;
 }
 
 #submit-btn{

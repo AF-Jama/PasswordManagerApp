@@ -1,21 +1,21 @@
-import {hash} from 'bcryptjs';
-// import { decode } from 'jsonwebtoken';
-// const {hash} = require('bcrypt')
+import { pbkdf2Sync } from 'pbkdf2';
 
 const SALTROUNDS = 10;
 
-const createVaultKey =  async (email,master)=>{
+const createVaultKey =  (email,master)=>{
     // creates vault key -> which is used to encrypt and decrypt passwords
     let masterPlusEmail = email+master
-    let hashs = await hash(masterPlusEmail,SALTROUNDS);
-    return hashs;
+    let hashs = pbkdf2Sync(masterPlusEmail,'',100,32,'sha512');
+    hashs = hashs.toString('hex');    
+    return hashs; // return vault key hash
 }
 
-const createAuthKey = async (vaultKey,master)=>{
+const createAuthKey = (vaultKey,master)=>{
     // creates auth key -> auth key is used to validate password vault 
     let vaultKeyPlusMaster = vaultKey+master;
-    let hashs = await hash(vaultKeyPlusMaster,SALTROUNDS)
-    return hashs;
+    let hashs = pbkdf2Sync(vaultKeyPlusMaster,'',100,32,'sha512');
+    hashs = hashs.toString('hex');
+    return hashs; // return auth key hash 
 }
 
 // const decodeToken = (token)=>{

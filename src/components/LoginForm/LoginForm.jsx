@@ -1,4 +1,5 @@
 import React,{useState,useEffect,useContext} from "react";
+import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import createVaultKey,{createAuthKey} from "../../utils";
 import './LoginForm.css';
@@ -21,7 +22,7 @@ const LoginForm = (props)=>{
         const {email,master_password} = data; // destructure data object 
 
         console.log(email);
-        console.log(`Auth key is ${authKey}`);
+        console.log(`Auth key on submit is ${authKey}`);
 
         let res = await onLogin(email,authKey); // on Login method which returns promise value
 
@@ -30,7 +31,8 @@ const LoginForm = (props)=>{
         if(res.statusCode===200){
             // trigerred if status code is not 200
             console.log("Login");
-            window.location.href = "/";
+            Cookies.set('master_password',masterPassword);
+            // window.location.href = "/";
             return;
         }
         
@@ -48,15 +50,19 @@ const LoginForm = (props)=>{
     const onPasswordChange = (event)=>{
         event.preventDefault();
 
-        createVaultKey(email,event.target.value) // creates vault key which returns promise value 
-        .then(vaultKey=>{
-            setMasterPassword(vaultKey); // sets master password 
+        // createVaultKey(email,event.target.value) // creates vault key which returns promise value 
+        // .then(vaultKey=>{
+        //     console.log(`Vault key is ${vaultKey}`);
+        //     setMasterPassword(vaultKey); // sets master password 
 
-            return createAuthKey(vaultKey,event.target.value); // create auth key which returns promise value
-        })
-        .then(authKey=>{
-            setAuthKey(authKey)
-        });
+        //     console.log(vaultKey+event.target.value);
+
+        //     return createAuthKey(vaultKey,event.target.value); // create auth key which returns promise value
+        // })
+        // .then(authKey=>{
+        //     console.log(`Auth key is ${authKey}`);
+        //     setAuthKey(authKey)
+        // });
 
         // createVaultKey(email,event.target.value)
         // .then(vaultKey=>setMasterPassword(vaultKey)); // sets master password
@@ -64,6 +70,12 @@ const LoginForm = (props)=>{
         // createVaultKey(email,event.target.value)
         // .then(vaultKey=>createAuthKey(vaultKey,event.target.value))
         // .then(authKey=>setAuthKey(authKey)); // sets auth key
+
+        let vaultKey = createVaultKey(email,event.target.value);
+        let authKey = createAuthKey(vaultKey,event.target.value);
+
+        setMasterPassword(vaultKey); // sets master password 
+        setAuthKey(authKey); // sets auth key 
 
     }
 
@@ -102,7 +114,7 @@ const LoginForm = (props)=>{
                 <p>{errors.email?.message}</p>
             </div>
             <div className="input-group">
-                <input type="password" className="input-text-form" {...register('master_password',{
+                <input style={{color:"black"}} className="input-text-form" {...register('master_password',{
                     minLength:12,
                     maxLength:50,
                     required:"Master Password is required",

@@ -3,6 +3,9 @@ import AuthContextProvider from './contexts/AuthContext/AuthContextProvider.js';
 import ThemeContextProvider from './contexts/ThemeContext/ThemeContextProvider.js';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom' // BrowserRouter used on top level app render 
+import 'react-app-polyfill/ie9'
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 import './index.css';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';

@@ -6,15 +6,16 @@ const prisma = new PrismaClient();
 const createUser = async (req,res)=>{
     try{
         const {userName,email,authKey} = req.body; // destructures req body 
-        const authHashKey = await hashAuthKey(authKey); // auth key hash which is stored subsequently in the auth table model
-        console.log(authHashKey);
+        const authHashKey = hashAuthKey(authKey); // auth key hash which returns hashed auth key and random 5 character which is stored subsequently in the auth table model
+        const { hashs,genSalt } = authHashKey; // destructure returned auth key object
         const user = await prisma.user.create({
             data:{
                 userName:userName,
                 email:email,
                 auth:{  
                     create:{
-                        authKey:authHashKey,
+                        authKey:hashs, // hashed auth key
+                        salt:genSalt // random 5 character salt 
                     }
                 }
             }
