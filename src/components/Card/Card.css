@@ -5,5 +5,20 @@
 }
 
 .card{
-    border:"2px solid red";
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: box-shadow 1s ease-in-out;
+    flex: 200px 1 1;
+    flex-wrap: wrap;
+}
+
+#passwords-detail-container>p{
+    border: 2px solid green;
+}
+
+.card:hover{
+    box-shadow: 0 14px 20px 0 rgba(0,0,0,0.2);
+}
+
+.reveal-btn{
+    margin-bottom:0.5rem;
 }

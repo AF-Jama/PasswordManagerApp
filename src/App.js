@@ -10,7 +10,6 @@ import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import NavBar from './components/common/NavBar';
 import Header from './components/common/Header';
-import logo from './logo.svg';
 import './App.css';
 
 const uri='http://localhost:3000/'

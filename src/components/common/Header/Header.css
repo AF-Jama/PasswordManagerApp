@@ -30,7 +30,7 @@ header{
     top: -15px;
 }
 
-h4::after{
+#logo-container>h4::after{
     content: url('../../../assets/lock.svg');
 }
 

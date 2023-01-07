@@ -16,7 +16,7 @@
 
 #main-container{
     flex: 1;
-    background-color: grey;
+    background-color: white;
     margin-top: 1rem;
     transition: display 2s ease-in-out;
 }
@@ -34,6 +34,13 @@
     display: flex;
     justify-content: space-between;
     margin: 0.5rem 1rem;
+}
+
+#passwords-container{
+    display: grid;
+    margin-top:2rem;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 10px;
 }
 
 @media screen and (min-width:500px){
@@ -58,6 +65,11 @@
         grid-column-end: 2;
         grid-row-start: 1;
         grid-row-end: 3;
+    }
+
+    #passwords-container{
+        display: flex;
+        height: 150px;
     }
 }
 

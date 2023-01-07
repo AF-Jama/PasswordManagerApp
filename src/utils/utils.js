@@ -28,9 +28,26 @@ const createAuthKey = (vaultKey,master)=>{
 //     return decode(token);
 // }
 
+const keyframeShake = {
+    transform:[
+        "translate(1px, 1px) rotate(0deg)",
+        "transform: translate(-1px, -2px) rotate(-1deg)",
+        "transform: translate(-3px, 0px) rotate(1deg)",
+        "transform: translate(3px, 2px) rotate(0deg)",
+        "transform: translate(1px, -1px) rotate(1deg)",
+        "transform: translate(-1px, 2px) rotate(-1deg)",
+        "transform: translate(-3px, 1px) rotate(0deg)",
+        "transform: translate(3px, 1px) rotate(-1deg)",
+        "transform: translate(-1px, -1px) rotate(1deg)",
+        "transform: translate(1px, 2px) rotate(0deg)",
+        "transform: translate(1px, -2px) rotate(-1deg)"
+    ]
+}
+
 export default createVaultKey;
 export{
     createAuthKey,
+    keyframeShake
 };
 
 // createAuthKey('sdskdjfd','klsdmdjkdsd').then(hash=>console.log(hash))

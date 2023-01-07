@@ -1,7 +1,8 @@
-import React,{useState,useEffect,useContext} from "react";
+import React,{useState,useEffect,useContext,useRef} from "react";
+import { Navigate } from "react-router";
 import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
-import createVaultKey,{createAuthKey} from "../../utils";
+import createVaultKey,{createAuthKey,keyframeShake  } from "../../utils";
 import './LoginForm.css';
 
 
@@ -15,6 +16,9 @@ const LoginForm = (props)=>{
     const [email,setEmail] = useState(''); // set email state 
     const [masterPassword,setMasterPassword] = useState(''); // set master password state
     const [authKey,setAuthKey] = useState(''); // sets auth key state  
+    const [active,setActive] = useState(false);
+
+    const loginFormRef = useRef();
 
     const onFormSubmit = async (data)=>{
         clearErrors('email');
@@ -32,11 +36,11 @@ const LoginForm = (props)=>{
             // trigerred if status code is not 200
             console.log("Login");
             Cookies.set('master_password',masterPassword);
-            // window.location.href = "/";
-            return;
+            window.location.href="/passwords"
         }
         
         console.log("Unable to login");
+        loginShake();
         return;
 
     }
@@ -100,8 +104,18 @@ const LoginForm = (props)=>{
         }
     }
 
+    const loginShake = ()=>{
+        setActive(true);
+    }
+
+    const onStopShaking = (event)=>{
+        event.preventDefault();
+
+        setActive(false);
+    }
+
     return (
-        <form id="form-outer-container" onSubmit={handleSubmit(onFormSubmit)}>
+        <form id="form-outer-container" className={active?"form-outer-container-shake":""} onSubmit={handleSubmit(onFormSubmit)} ref={loginFormRef}>
             <div className="input-group">
                 <input className="input-text-form" {...register('email',{
                     required:'email is required',
@@ -123,6 +137,8 @@ const LoginForm = (props)=>{
                 <p>{errors.master_password?.message}</p>
             </div>
             <input id="submit-btn" type="submit" value='Login'/>
+            <p><a href="/signup">Dont have an account? Create Here</a></p>
+            {active?<p onClick={onStopShaking}>Cannot log in, stop shaking here</p>:null}
         </form>
     )
 }

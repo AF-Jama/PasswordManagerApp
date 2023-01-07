@@ -10,9 +10,11 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
     "pbkdf2": "^3.1.2",
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
@@ -22,7 +24,7 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
-    "webpack": "^4.46.0",
+    "webpack": "^5.75.0",
     "yup": "^0.32.11"
   },
   "scripts": {
@@ -49,5 +51,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5050/"
+  "proxy": "http://localhost:5050/",
+  "devDependencies": {
+    "css-loader": "^6.7.3"
+  }
 }

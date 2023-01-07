@@ -1,11 +1,21 @@
 import React,{useState,useEffect,useContext} from "react";
+import { Navigate } from "react-router";
 import Header from "../../components/common/Header";
 import LoginForm from "../../components/LoginForm";
+import useAuth from "../../customHooks/auth";
 import './Login.css';
 
 
 const Login = (props)=>{
+    const { token,masterPassword,isAuthenticated,user,login,logout } = useAuth();
 
+    console.log(`Token is ${token}`);
+    console.log(`Master password is ${masterPassword}`);
+
+    if(isAuthenticated){
+        // triggered if user is authenticated 
+        return <Navigate to='/passwords' replace={true}/>
+    }
 
 
     return (

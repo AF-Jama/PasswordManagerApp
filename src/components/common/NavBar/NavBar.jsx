@@ -8,7 +8,7 @@ import { faBars, faDisplay,faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = (props)=>{
     const [visibility,setVisibility] = useState(false); // visible state is initial set to false 
-    const {token,masterPassword,isAuthenticated,login,logout} = useAuth(); // use Auth hook which runs on initial mount and subsequent changes to the useEffect dependency array
+    const {token,masterPassword,isAuthenticated,logout} = useAuth(); // use Auth hook which runs on initial mount and subsequent changes to the useEffect dependency array
 
     const burgerRef = useRef();
     const navLinksOuterContainer = useRef();
@@ -38,7 +38,7 @@ const NavBar = (props)=>{
                 <a href="#" className="nav-links">Home</a>
                 <a href="#" className="nav-links">About</a>
                 <a href="#" className="nav-links">Your Passwords</a>
-                {token?<a href="#"><ActionButton text="Logout" style={{padding:"0.5rem 2.5rem",width:"100px"}}/></a>:<a href="/login"><ActionButton text="Login" style={{padding:"0.5rem 2.5rem",width:"100px"}}/></a>}
+                {isAuthenticated?<a href="#"><ActionButton text="Logout" onClick={logout} style={{padding:"0.5rem 2.5rem",width:"100px"}}/></a>:<a href="/login"><ActionButton text="Login" style={{padding:"0.5rem 2.5rem",width:"100px"}}/></a>}
             </div>
 
             {/* <div id="action-button-container">

@@ -17,6 +17,7 @@ const RegisterForm = (props)=>{
     const [email,setEmail] = useState(''); // set email state 
     const [vaultKey,setVaultKey] = useState(''); // set vault key state 
     const [authKey,setAuthKey] = useState(''); // set auth key state 
+    const [active,setActive] = useState(false); // sets active state 
 
     const submitButtonRef = useRef();
 
@@ -41,15 +42,12 @@ const RegisterForm = (props)=>{
             let res = await createUser(username,email,authKey);
 
             if(res.statusCode===201){
-                // window.location = 'http://bbc.co.uk'
                 console.log("SIGNED UP");
                 return;
             }
             else if(res.statusCode!==201){
                 console.log("ERROR WHEN CREATING USER or user already exists")
             }
-
-            return;
             
 
 
@@ -73,6 +71,8 @@ const RegisterForm = (props)=>{
 
         }
 
+        loginShake();
+
 
     }
 
@@ -81,7 +81,7 @@ const RegisterForm = (props)=>{
             userName:username,
             email:email,
             authKey:authKey
-        }
+        } // creating payload object 
         let res = await fetch('/users/create/',{
             method:"POST",
             body:JSON.stringify(payload),
@@ -169,6 +169,16 @@ const RegisterForm = (props)=>{
         setAuthKey(authKey); // sets auth key
     }
 
+    const loginShake = ()=>{
+        setActive(true);
+    }
+
+    const onStopShaking = (event)=>{
+        event.preventDefault();
+
+        setActive(false); // sets active to false which triggers re renders and stops shake animation
+    }
+
     console.log(errors)
 
     console.log(username);
@@ -176,7 +186,7 @@ const RegisterForm = (props)=>{
     // console.log(authKey);
 
     return (
-        <form id="form-container" onSubmit={handleSubmit(onFormSubmit)}>
+        <form id="form-container" className= {active?'form-outer-container-shake':''} onSubmit={handleSubmit(onFormSubmit)}>
             <div className="input-group">
                 <input type="text" className="input-text-form" {...register('username',{
                     minLength:5,
@@ -212,7 +222,8 @@ const RegisterForm = (props)=>{
             </div>
 
             <input id="submit-btn" type="submit" value="Submit" ref={submitButtonRef}/>
-            <p className="login-text">Already have an account? <a href="/login">Login here</a></p>
+            {active?<p onClick={onStopShaking}>Cannot create account, stop shaking here</p>:""}
+            <p className="login-text"><a href="/login">Already have an account? Login here</a></p>
         </form>
     )
 }

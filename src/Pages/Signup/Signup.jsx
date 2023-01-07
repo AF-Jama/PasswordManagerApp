@@ -1,13 +1,18 @@
 import React,{useState,useEffect,useContext} from "react";
+import { Navigate } from "react-router";
 import Header from "../../components/common/Header";
 import RegisterForm from "../../components/RegisterForm";
 import passwordImage from '../../assets/passwordLock.jpg';
+import useAuth from "../../customHooks/auth";
 import './Signup.css';
 
 
 const SignUp = ()=>{
+    const { token,masterPassword,isAuthenticated,user,login,logout } = useAuth();
 
-
+    if(isAuthenticated){
+        return <Navigate to='/passwords' replace={true}/>
+    }
 
     return (
         <div id="sign-up-container">
