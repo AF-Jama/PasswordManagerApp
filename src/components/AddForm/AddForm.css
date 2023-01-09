@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#add-form-container{
+    display: block;
+    min-height: 100%;
+    border: 2px solid yellow;
+    flex: 1;
+}
+
+#submit-btn{
+    padding: 0.5rem 2.7rem;
+    border-radius: 5px;
+    background-color: #1A486E;
+    cursor:pointer;
+    color: black;
+    border: 0;
+}
+

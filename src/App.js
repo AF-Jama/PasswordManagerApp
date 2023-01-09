@@ -4,6 +4,8 @@ import HomeComponent from './components/HomeComponent';
 import PasswordComponent from './components/PasswordComponent';
 import SignUp from './Pages/Signup';
 import Login from './Pages/Login';
+import AddForm from './components/AddForm';
+import Add from './Pages/Add';
 import Main from './Pages/Main';
 import Card from './components/Card';
 import RegisterForm from './components/RegisterForm';
@@ -23,6 +25,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/passwords' element={<Main/>}/>
         <Route path='/card' element={<Card/>}/>
+        <Route path='/passwords/add' element={<Add/>}/>
       </Routes>
     </div>
   );

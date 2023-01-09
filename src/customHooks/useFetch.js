@@ -2,9 +2,9 @@ import React,{useEffect,useState} from "react";
 
 
 const useFetch = (URL)=>{
-    const [data,setData] = useState(null);
-    const [loading,setLoading] = useState(true);
-    const [error,setError] = useState(null);
+    const [data,setData] = useState(null); // sets data state 
+    const [loading,setLoading] = useState(true); // sets loading state 
+    const [error,setError] = useState(null); // sets error state 
 
     useEffect(()=>{
         const fetchData = async ()=>{
@@ -23,7 +23,10 @@ const useFetch = (URL)=>{
             }
         }
         fetchData();
-    },[]) // runs on initial render (initial mount)
+    },[URL]) // runs on initial render (initial mount) and changes to dependency array 
 
     return {data,loading,error}; // returns data,loading,error state
 }
+
+
+export default useFetch;

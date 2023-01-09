@@ -9,13 +9,13 @@ const getAllPasswords = async (req,res)=>{
         const authId = token.authId;
         console.log(`Auth id is ${authId}`)
         if(!authId) throw "Error";
-        const uniqueAuth = await prisma.auth.findUnique({
+        const uniqueAuth = await prisma.auth.findUniqueOrThrow({
             // find unique auth row  
             where:{
                 id:authId
             }
         })
-        if(!uniqueAuth) throw new Error("Could not find user"); // error triggered if authId is not returned
+        // if(!uniqueAuth) throw new Error("Could not find user"); // error triggered if authId is not returned
         const userEncrypedPasswords = await prisma.$queryRaw`SELECT ENCPASSWORD.ID,ENCPASSWORD.ENCPASSWORD,ENCPASSWORD.SITENAME FROM AUTH JOIN ENCPASSWORD ON AUTH.ID=ENCPASSWORD.AUTHID AND ENCPASSWORD.AUTHID=${authId}` // raw query which peforms inner join(join) on auth and encrypted password model
         console.log(userEncrypedPasswords); // REMOVE BEFORE VERSION CONTROL
 

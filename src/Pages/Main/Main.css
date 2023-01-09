@@ -16,6 +16,8 @@
 
 #main-container{
     flex: 1;
+    display: flex;
+    flex-direction:column;
     background-color: white;
     margin-top: 1rem;
     transition: display 2s ease-in-out;
@@ -37,10 +39,42 @@
 }
 
 #passwords-container{
+    flex: 1;
     display: grid;
     margin-top:2rem;
     grid-template-columns: repeat(2,1fr);
+    grid-template-rows:repeat(2,auto);
     grid-gap: 10px;
+}
+
+#arrow-action-container{
+    display:flex;
+    justify-content: space-between;
+    align-items:flex-end;
+    width: 90%;
+    max-width: var(--maxWidth);
+    margin: 1rem auto;
+}
+
+
+@keyframes loadingAnimation{
+    0%{
+        opacity: 1;
+    }
+    
+    50%{
+        opacity: 0.5;
+    }
+    
+    100%{
+        opacity:0;
+    }
+}
+
+#loading-title{
+    animation-name: loadingAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
 }
 
 @media screen and (min-width:500px){
@@ -53,7 +87,7 @@
         grid-column-start: 2;
         grid-column-end: 3;
         grid-row-start: 1;
-        grid-row-end: 3;
+        grid-row-end: 4;
         display: flex;
         flex-direction:column;
         justify-content: space-between;

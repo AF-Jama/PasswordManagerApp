@@ -23,11 +23,13 @@ const addPassword = async (req,res)=>{
         })
         console.log(add);
         return res.json({
+            statusCode:201,
             msg:"Succesfully added encrypted password"
         }).status(201)
     }catch(error){
         console.log(error);
         return res.json({
+            statusCode:400,
             msg:"Error could not add encrypted password"
         }).status(400)
     }

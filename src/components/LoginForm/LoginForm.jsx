@@ -78,6 +78,8 @@ const LoginForm = (props)=>{
         let vaultKey = createVaultKey(email,event.target.value);
         let authKey = createAuthKey(vaultKey,event.target.value);
 
+        console.log(authKey);
+
         setMasterPassword(vaultKey); // sets master password 
         setAuthKey(authKey); // sets auth key 
 
