@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from "react";
-import CryptoJS from "crypto-js";
+import CryptoJS,{AES} from "crypto-js";
 import {useForm} from 'react-hook-form';
 import useAuth from "../../customHooks/auth";
 import './AddForm.css';
@@ -8,6 +8,7 @@ import { Navigate } from "react-router";
 
 const AddForm = (props)=>{
     const { masterPassword } = useAuth();
+
     const {register,handleSubmit,formState:{errors}} = useForm({
         defaultValues:{
             name:'',
@@ -16,6 +17,8 @@ const AddForm = (props)=>{
     })
 
     const [active,setActive] = useState(false); // sets active state of form
+    const [encryptedPassword,setEncryptedPassword] = useState(''); // sets encrypted password state
+    const [addStatus,setAddStatus] = useState(false); 
 
     const addShake = ()=>{
         setActive(true); // sets active state to true
@@ -25,13 +28,13 @@ const AddForm = (props)=>{
         setActive(false); // sets active state to false
     }
 
-    const addPassword = async (name,password)=>{
+    const addPassword = async (name,encPassword)=>{
         let payload = {
             siteName:name,
-            encPassword:password
+            encryptedPassword:encPassword
         } // creates payload object 
 
-        let res = await fetch(`passwords/addPasswords`,{
+        let res = await fetch(`passwords/addPassword`,{
             method:"POST",
             body:JSON.stringify(payload),
             headers: {
@@ -42,46 +45,69 @@ const AddForm = (props)=>{
 
         res = await res.json();
 
+        console.log("response is")
+        console.log(res);
+
         return res; // returns response promise value
     }
 
     const encryptPassword = (password)=>{
         let encrypted = CryptoJS.AES.encrypt(password,masterPassword).toString();
 
+
         return encrypted; // returns encrypted string
     }
 
-    const onFormSubmit = async (data)=>{
-        const { name,password } = data; // destructures data object
+    const onPasswordChange = (event)=>{
+        // triggered on password change
+        event.preventDefault();
 
-        let res = await addPassword(name,encryptPassword(password)); // returns response promise value
+        setEncryptedPassword(encryptPassword(event.target.value)); // sets encrypted password state 
+    }
+
+    const onFormSubmit = async (data)=>{
+        console.log("HERE");
+        const { name } = data; // destructures data object
+
+        let res = await addPassword(name,encryptedPassword); // returns response promise value
+
+        console.log(res.statusCode);
 
         if(res.statusCode===201){
+            addStatus(true);
             return <Navigate to='/passwords' replace={true}/>
         }else{
             addShake();
+            addStatus(false);
+            return;
         }
 
     }
+
+    console.log(errors);
 
 
 
     return (
         <form id="add-form-container" className={active?'form-outer-container-shake':''} onSubmit={handleSubmit(onFormSubmit)}>
+            {addStatus?"Succesfully added password":""}
             <div className="input-group">
-                <input type="text" id="site-name-input" {...register('name',{
+                <input type="text" id="site-name-input" className="text-input" placeholder="Enter Site Name" {...register('name',{
                     required:"Name of site associated with password is required"
                 })} />
+                <p>{errors.name?.message?"Site Name Error":""}</p>
             </div>
 
             <div className="input-group">
-                <input type="text" id="site-password-input" {...register('password',{
+                <input type="text" id="site-password-input" className="text-input" placeholder="Enter Site Password" {...register('password',{
                     min:8,
                     required:"Password is required and must be atleast 8 characters",
                     pattern:{
-                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/ // regex which specifies password must be min 8 characters, 1 number, 1 lowercase,1 uppercase and one special character  
-                    }
+                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*.?&])[A-Za-z\d@$!%*.?&]{8,}$/ // regex which specifies password must be min 8 characters, 1 number, 1 lowercase,1 uppercase and one special character  
+                    },
+                    onChange:onPasswordChange
                 })} />
+                <p>{errors.password?.message?"Password must be valid":""}</p>
             </div>
 
             <input id="submit-btn" type="submit" value="Add Password"/>

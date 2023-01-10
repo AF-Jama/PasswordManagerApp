@@ -7,8 +7,27 @@
 #add-form-container{
     display: block;
     min-height: 100%;
-    border: 2px solid yellow;
+    border: 2px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
+    position:relative;
+}
+
+.input-group{
+    /* border: 2px solid red; */
+    width: 90%;
+    max-width: 250px;
+    margin: 1rem auto;
+}
+
+.input-group:nth-child(2){
+    margin-bottom: 1.1rem;
+}
+
+.text-input{
+    width: 100%;
 }
 
 #submit-btn{
@@ -18,5 +37,8 @@
     cursor:pointer;
     color: black;
     border: 0;
+    width: 60%;
+    max-width: 150px;
+    margin: 0 auto;
 }
 

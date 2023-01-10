@@ -12,7 +12,7 @@ router.get('/getAllPasswords',jwtMiddleware,getAllPasswords);
 
 router.get('/getPasswords',jwtMiddleware,getPasswords);
 
-router.post('/addPasswords',jwtMiddleware,addPassword);
+router.post('/addPassword',jwtMiddleware,addPassword);
 
 router.delete('/deletePassword/:passwordId',jwtMiddleware,deletePassword);
 

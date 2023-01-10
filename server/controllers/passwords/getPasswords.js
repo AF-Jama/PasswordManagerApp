@@ -4,20 +4,18 @@ import { json } from "express";
 const prisma = new PrismaClient();
 
 const getPasswords = async (req,res)=>{
-    let {start = 0,limit,cursor} = req.query; // destructures query object
+    let {page,limit=4,cursor} = req.query; // destructures query object
 
-    start = parseInt(start); // type casts string query parameter into int
+    page = parseInt(page); // type casts string query parameter into int
     limit = parseInt(limit); // type casts string query parameter into int
     cursor = parseInt(cursor); // type casts string query parameter into int 
 
     console.log(typeof limit);
-    console.log(start);
     console.log(cursor);
 
     try{
         // triggered if start or limit query parameters are evaluates to null
-        if(!limit) throw new Error('limit query parameter must be specified')
-        if(start!=0 && !cursor) throw new Error("Cursor must be specified if start is not 0");
+        if(!page) throw new Error('page query parameter must be specified')
 
         const authId = req.token.authId; // returns from jwt token authId 
 
@@ -40,8 +38,8 @@ const getPasswords = async (req,res)=>{
 
         const passwords = await prisma.encPassword.findMany({
             take: limit, // specifies number of results to "take" per page 
-            skip: (start===0)?undefined:1, // if start query parameter is 0 then skip should be null else skip should be 1 to ensure last result is skipped 
-            cursor: (start===0)?undefined:{
+            skip: (page===1)?undefined:1, // if page query parameter is 1 then skip should be null else skip should be 1 to ensure last result is skipped from previous page 
+            cursor: (page===1)?undefined:{
                 id:cursor
             }, // ternary operator which sets cursor 
             where:{
@@ -55,9 +53,9 @@ const getPasswords = async (req,res)=>{
 
         return res.json({
             // next is triggered if last password of users total passwords does not match the last password of a particular page. If ids match it means the last page has been reached 
-            next:(allPasswords[allPasswords.length-1].id===passwords[passwords.length-1].id)?'':`/passwords/getPasswords?start=${start+limit}&limit=${limit}&cursor=${passwords[passwords.length-1].id}`,
+            next:(allPasswords[allPasswords.length-1].id===passwords[passwords.length-1].id)?'':`/passwords/getPasswords?page=${page+1}&limit=${limit}&cursor=${passwords[passwords.length-1].id}`,
             'results':passwords,
-            prev:(start===0)?'':`/passwords/getPasswords?start=${start-limit}&limit=${limit}&cursor=${passwords[0].id}` // need to implement reverse api endpoint 
+            prev:((page-1)===0)?'':`/passwords/getPasswords?page=${page-1}&limit=${limit}&cursor=${allPasswords[((page-1)*limit)-limit].id}` // need to implement reverse api endpoint 
         })
         
     }catch(error){

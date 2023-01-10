@@ -28,13 +28,13 @@ const Card = (props)=>{
     console.log(revealStatus);
 
     return (
-        <div className="card">
+        <div className="card" key={props.uniqueKey}>
             {/* <h3>{props.siteName}</h3> */}
             <h4>{props.siteName}</h4>
 
             <div id="password-details-container">
                 {/* <p>{props.password}</p> */}
-                <p>{revealStatus?``:`${props.encPassword}`}</p>
+                <p>{revealStatus?`${decrypt(props.encPassword)}`:`${props.encPassword.substring(0,10)}...`}</p>
             </div>
                 {revealStatus?<button id="enc-dec-btn" className="reveal-btn" style={{padding:"0.5rem 3.6rem"}} onClick={onClick}><FontAwesomeIcon icon={faEye} color="black"/></button>:<button id="enc-dec-btn" className="reveal-btn" style={{padding:"0.5rem 3.6rem"}} onClick={onClick}><FontAwesomeIcon icon={faEyeSlash} color="black"/></button>}
         </div>

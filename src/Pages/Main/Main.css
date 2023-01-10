@@ -42,8 +42,8 @@
     flex: 1;
     display: grid;
     margin-top:2rem;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows:repeat(2,auto);
+    grid-template-columns: repeat(1fr); /* 2 columns */
+    /* grid-template-rows:repeat(2,auto); */
     grid-gap: 10px;
 }
 
@@ -77,6 +77,16 @@
     animation-iteration-count: infinite;
 }
 
+.disabled-left-arrow,.disabled-right-arrow{
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+@media screen and (min-width:400px){
+
+}
+
 @media screen and (min-width:500px){
     #main-container{
         display: grid;
@@ -104,6 +114,7 @@
     #passwords-container{
         display: flex;
         height: 150px;
+        flex-wrap: wrap;
     }
 }
 

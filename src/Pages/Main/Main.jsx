@@ -11,8 +11,8 @@ import './Main.css';
 
 const Main = (props)=>{
     const { token,masterPassword,isAuthenticated,user,login,logout } = useAuth();
-    const [limit,setLimit] = useState(4); // sets endpoint limit 
-    const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?limit=${limit}`);
+    const [page,setPage] = useState(1); // sets endpoint limit 
+    const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}`); // sets endpoint state 
     const { data,loading,error } = useFetch(endpoint);
 
     const createCards = (data)=>{
@@ -22,13 +22,15 @@ const Main = (props)=>{
         let cards = [];
 
         data.results.forEach((value,index,array)=>{
-            cards.push(<Card siteName={value.siteName} encPassword={value.encPassword}/>)
+            cards.push(<Card siteName={value.siteName} encPassword={value.encPassword} uniqueKey={index}/>)
         })
 
         console.log(cards);
 
         return cards; // returns cards 
     }
+
+    console.log(isAuthenticated);
 
     if(!isAuthenticated){
         // triggered if user is not authenticated 
@@ -51,6 +53,7 @@ const Main = (props)=>{
                         <FontAwesomeIcon id="edit-btn" icon={faPenToSquare} color="black"/>
                     </div>
                 </div>
+
                 <div id="passwords-container">
                     {(loading||error) && <h4 id="loading-title">Loading...</h4>}
                     {data && createCards(data)}
@@ -58,10 +61,17 @@ const Main = (props)=>{
 
                 <div id="arrow-action-container">
                     <div id="arrow-left-container">
-                        <FontAwesomeIcon icon={faArrowLeft} color="black"/>
+                        <FontAwesomeIcon id="left-arrow-icon" className={(page===1)?"disabled-left-arrow":""}  icon={faArrowLeft} color="black" onClick={()=>{
+                            setEndpoint(data.prev);
+                            setPage(page-1);
+                        }}/>
                     </div>
+                    <p>Page {page}</p>
                     <div id="arrow-right-container">
-                        <FontAwesomeIcon icon={faArrowRight} color="black"/>
+                        <FontAwesomeIcon id="right-arrow-icon" icon={faArrowRight} className={(!data?.next)?"disabled-right-arrow":""} color="black" onClick={()=>{
+                            setEndpoint(data.next)
+                            setPage(page+1)
+                        }}/>
                     </div>
                 </div>
             </main>
