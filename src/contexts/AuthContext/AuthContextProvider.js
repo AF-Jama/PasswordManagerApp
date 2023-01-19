@@ -17,7 +17,6 @@ const AuthContextProvider = ({children})=>{
         setMasterPassword(null);
         setIsAuthenticated(false);
         setUser(null);
-        Cookies.remove('token');
         Cookies.remove('master_password');
     }
 
@@ -41,43 +40,35 @@ const AuthContextProvider = ({children})=>{
 
     useEffect(()=>{
         console.log("HERE")
-        const cookieToken = Cookies.get('token'); // returns cookie token if exists or returns null
         const cookieMasterPassword = Cookies.get('master_password'); // returns hashed master password used as key to encrypt and decrypt passwords
-
-        console.log(cookieToken);
         console.log(cookieMasterPassword);
 
-        if((!token||!masterPassword) && (cookieToken && cookieMasterPassword)){
+        if((!masterPassword) && (cookieMasterPassword)){
             // triggered if cookie token or cookie master password exist but token or master password does not exist
-            setToken(cookieToken);
             setMasterPassword(cookieMasterPassword);
             setIsAuthenticated(true);
-            setUser(decodeToken(cookieToken));
         }
 
-        if((token&&masterPassword) && (token===cookieToken && masterPassword===cookieMasterPassword)){
+        if((masterPassword) && (masterPassword===cookieMasterPassword)){
             // triggered if token and master password exist and match cookie values meaning user is logged in
             console.log("USER TOKEN AND MASTER PASSWORD EXIST")
         }
 
-        if((!token&&!masterPassword) && (!cookieToken && !cookieMasterPassword)){
+        if((!masterPassword) && (!cookieMasterPassword)){
             // on initial render (on mount) 
             console.log("INITIAL MOUNT");
         }
 
-        if((!token||!masterPassword) && (!cookieToken||!cookieMasterPassword)){
-            // if cookie token or cookie master password does not exist and cookie does not exist
+        if((masterPassword) && (masterPassword!==cookieMasterPassword)){
+            // triggered if master password exists and master password does not cookie master password 
             logout();
         }
-        
 
 
-
-
-    },[token,masterPassword]); // runs on initial render(initial mount) and every update 
+    },[masterPassword]); // runs on initial render(initial mount) and every update 
 
     return (
-        <authContext.Provider value={{token,masterPassword,isAuthenticated,user,logout}}> 
+        <authContext.Provider value={{masterPassword,isAuthenticated,user,logout}}> 
             {children}
         </authContext.Provider>
     )

@@ -10,20 +10,22 @@ const Add = (props)=>{
     const { token,masterPassword,isAuthenticated,user,login,logout } = useAuth();
 
     if(isAuthenticated){
-        // triggered if block evaluates to true
         return (
             <div id="add-container">
                 <Header/>
     
                 <div id="main-add-container">
-                    <AddForm/>
+                    <div className="add-card">
+                        <h4>Add password to your vault</h4>
+                        <AddForm/>
+                        <a href="/passwords">Go to my passwords</a>
+                    </div>
                 </div>
             </div>
         )
-
     }
-
-    return <Navigate to='/login'/>
+    
+    return <p>NOT LOGGED IN</p>
 
     
 }

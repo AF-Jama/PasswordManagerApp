@@ -4,25 +4,23 @@
     box-sizing: border-box;
 }
 
-#add-form-container{
+/* #add-form-container{
     display: block;
-    min-height: 100%;
-    border: 2px solid green;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex: 1;
     position:relative;
-}
+} */
 
 .input-group{
     /* border: 2px solid red; */
-    width: 90%;
+    /* width: 90%;
     max-width: 250px;
-    margin: 1rem auto;
+    margin: 1rem auto; */
 }
 
-.input-group:nth-child(2){
+/* .input-group:nth-child(2){
     margin-bottom: 1.1rem;
 }
 
@@ -40,5 +38,5 @@
     width: 60%;
     max-width: 150px;
     margin: 0 auto;
-}
+} */
 

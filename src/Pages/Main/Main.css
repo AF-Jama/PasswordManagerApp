@@ -90,7 +90,7 @@
 @media screen and (min-width:500px){
     #main-container{
         display: grid;
-        grid-template-columns: 1fr 100px;
+        grid-template-columns: 1fr 75px;
     }
 
     #actions-container{
@@ -113,8 +113,14 @@
 
     #passwords-container{
         display: flex;
+        flex-direction: row;
         height: 150px;
         flex-wrap: wrap;
+    }
+
+    #arrow-action-container{
+        grid-column-start: 1;
+        grid-column-end: 2;
     }
 }
 

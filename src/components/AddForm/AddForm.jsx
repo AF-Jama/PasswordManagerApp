@@ -3,7 +3,7 @@ import CryptoJS,{AES} from "crypto-js";
 import {useForm} from 'react-hook-form';
 import useAuth from "../../customHooks/auth";
 import './AddForm.css';
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
 
 const AddForm = (props)=>{
@@ -34,7 +34,7 @@ const AddForm = (props)=>{
             encryptedPassword:encPassword
         } // creates payload object 
 
-        let res = await fetch(`passwords/addPassword`,{
+        let res = await fetch(`/passwords/addPassword`,{
             method:"POST",
             body:JSON.stringify(payload),
             headers: {
@@ -74,8 +74,7 @@ const AddForm = (props)=>{
         console.log(res.statusCode);
 
         if(res.statusCode===201){
-            addStatus(true);
-            return <Navigate to='/passwords' replace={true}/>
+            setAddStatus(true);
         }else{
             addShake();
             addStatus(false);
@@ -86,6 +85,13 @@ const AddForm = (props)=>{
 
     console.log(errors);
 
+    useEffect(()=>{
+        if(addStatus){
+            setTimeout(()=>{
+                setAddStatus(false);
+            },1000) // set timeout changes add status to false after atleast 1000ms (1s) 
+        }
+    },[addStatus])
 
 
     return (

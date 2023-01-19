@@ -8,7 +8,7 @@ import './Signup.css';
 
 
 const SignUp = ()=>{
-    const { token,masterPassword,isAuthenticated,user,login,logout } = useAuth();
+    const { masterPassword,isAuthenticated,user,login,logout } = useAuth();
 
     if(isAuthenticated){
         return <Navigate to='/passwords' replace={true}/>

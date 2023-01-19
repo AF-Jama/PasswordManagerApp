@@ -37,7 +37,7 @@ const NavBar = (props)=>{
             <div id="nav-links-container" ref={navLinksOuterContainer}>
                 <a href="#" className="nav-links">Home</a>
                 <a href="#" className="nav-links">About</a>
-                <a href="/add" className="nav-links">Your Passwords</a>
+                <a href="/passwords" className="nav-links">Your Passwords</a>
                 {isAuthenticated?<a href="#"><ActionButton text="Logout" onClick={logout} style={{padding:"0.5rem 2.5rem",width:"100px"}}/></a>:<a href="/login"><ActionButton text="Login" style={{padding:"0.5rem 2.5rem",width:"100px"}}/></a>}
             </div>
 

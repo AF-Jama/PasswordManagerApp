@@ -4,9 +4,14 @@
     box-sizing: border-box;
 }
 
+:root{
+    --maxCardWidth:250px;
+}
+
 .card{
     display:flex;
     flex-direction: column;
+    height: 150px;
     justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: box-shadow 1s ease-in-out;
@@ -24,16 +29,22 @@
     margin-bottom:0.5rem;
 }
 
+#enc-dec-btn{
+
+}
+
+button{
+    width:100px;
+    margin: 0 auto;
+}
+
 @media screen and (min-width:400px){
-    button{
-        width:100px;
-        margin: 0 auto;
-    }
 }
 
 @media screen and (min-width:500px){
     .card{
-        flex: 1 1 200px;
-        flex-wrap:wrap;
+        flex: 0 0 200px;
+        height: 200px;
+        /* flex-wrap:wrap; */
     }
 }

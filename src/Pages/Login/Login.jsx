@@ -7,9 +7,8 @@ import './Login.css';
 
 
 const Login = (props)=>{
-    const { token,masterPassword,isAuthenticated,user,login,logout } = useAuth();
-
-    console.log(`Token is ${token}`);
+    const { masterPassword,isAuthenticated,user,login,logout } = useAuth();
+    
     console.log(`Master password is ${masterPassword}`);
 
     if(isAuthenticated){

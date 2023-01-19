@@ -6,13 +6,17 @@ import Header from '../../components/common/Header';
 import Card from "../../components/Card";
 import useAuth from "../../customHooks/auth";
 import useFetch from "../../customHooks/useFetch";
+import useSize from "../../customHooks/useSize";
 import './Main.css';
 
 
 const Main = (props)=>{
-    const { token,masterPassword,isAuthenticated,user,login,logout } = useAuth();
+    const { masterPassword,isAuthenticated,user,login,logout } = useAuth();
+    const size = useSize(); // useSize custom hook which returns window width on mount
     const [page,setPage] = useState(1); // sets endpoint limit 
-    const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}`); // sets endpoint state 
+    const [limit,setLimit] = useState(4);
+    // const limit = useSize();
+    const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}&limit=${limit}`); // sets endpoint state 
     const { data,loading,error } = useFetch(endpoint);
 
     const createCards = (data)=>{
@@ -31,11 +35,14 @@ const Main = (props)=>{
     }
 
     console.log(isAuthenticated);
+    // console.log(size?.width);
 
     if(!isAuthenticated){
         // triggered if user is not authenticated 
         return <Navigate to='/login' replace={true}/>
     }
+
+    console.log(endpoint);
 
     return (
         <div id="main-passwords-container">
@@ -47,7 +54,7 @@ const Main = (props)=>{
                         <FontAwesomeIcon id="delete-btn" icon={faTrash} color="black"/>
                     </div>
                     <div className="password-action-btns">
-                        <FontAwesomeIcon id="add-btn" icon={faPlus} color="black"/>
+                        <a href="/passwords/add"><FontAwesomeIcon id="add-btn" icon={faPlus} color="black"/></a>
                     </div>
                     <div className="password-action-btns">
                         <FontAwesomeIcon id="edit-btn" icon={faPenToSquare} color="black"/>

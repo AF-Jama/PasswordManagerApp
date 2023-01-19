@@ -5,7 +5,7 @@
 }
 
 :root{
-    --maxWidth:1400px;
+    --cardMaxWidth:950px;
 }
 
 #add-container{
@@ -16,8 +16,23 @@
 }
 
 #main-add-container{
+    display: grid;
+    place-items: center;
     flex:1;
+}
+.add-card{
+    height: auto;
     display: flex;
     flex-direction: column;
-    border:2px solid yellow;
+    /* color: white; */
+    width: 90%;   
+    max-width: 600px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1 );
+    margin: 0 auto;
+    padding: 0 0 2rem 0;
+}
+
+.add-password-header{
+    margin: 0;
+    padding: 0;
 }
