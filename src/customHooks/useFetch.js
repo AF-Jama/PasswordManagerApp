@@ -5,6 +5,9 @@ const useFetch = (URL)=>{
     const [data,setData] = useState(null); // sets data state 
     const [loading,setLoading] = useState(true); // sets loading state 
     const [error,setError] = useState(null); // sets error state 
+    const [refetchIndex, setRefetchIndex] = useState(0); // sets refetch state 
+
+    const refetch = ()=> setRefetchIndex((prevFetchIndex)=>prevFetchIndex+1); // method which increments state of refetchIndex
 
     useEffect(()=>{
         const fetchData = async ()=>{
@@ -23,9 +26,9 @@ const useFetch = (URL)=>{
             }
         }
         fetchData();
-    },[URL]) // runs on initial render (initial mount) and changes to dependency array 
+    },[URL,refetchIndex]) // runs on initial render (initial mount) and changes to dependency array 
 
-    return {data,loading,error}; // returns data,loading,error state
+    return {data,loading,error,refetch}; // returns data,loading,error state
 }
 
 

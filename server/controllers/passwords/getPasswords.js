@@ -61,7 +61,7 @@ const getPasswords = async (req,res)=>{
     }catch(error){
         return res.json({
             statusCode:400,
-            msg:error
+            msg:"unable to retrieve passwords"
         })
     }
 }

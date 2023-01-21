@@ -1,8 +1,9 @@
-import createVaultKey,{createAuthKey,keyframeShake} from './utils.js'
+import createVaultKey,{createAuthKey,keyframeShake,generateRandomString} from './utils.js'
 
 
 export default createVaultKey;
 export {
     createAuthKey,
-    keyframeShake
+    keyframeShake,
+    generateRandomString
 }

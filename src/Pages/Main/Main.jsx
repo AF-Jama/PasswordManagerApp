@@ -1,12 +1,13 @@
 import React,{useState,useEffect,useContext} from "react";
 import { Navigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus,faTrash,faPenToSquare,faArrowRight,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faPlus,faTrash,faPenToSquare,faArrowRight,faArrowLeft,faStop } from "@fortawesome/free-solid-svg-icons";
 import Header from '../../components/common/Header';
 import Card from "../../components/Card";
 import useAuth from "../../customHooks/auth";
 import useFetch from "../../customHooks/useFetch";
 import useSize from "../../customHooks/useSize";
+import { generateRandomString } from "../../utils";
 import './Main.css';
 
 
@@ -15,9 +16,10 @@ const Main = (props)=>{
     const size = useSize(); // useSize custom hook which returns window width on mount
     const [page,setPage] = useState(1); // sets endpoint limit 
     const [limit,setLimit] = useState(4);
+    const [del,setDelStatus] = useState(false); // sets delete status of child cards
     // const limit = useSize();
     const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}&limit=${limit}`); // sets endpoint state 
-    const { data,loading,error } = useFetch(endpoint);
+    const { data,loading,error,refetch } = useFetch(endpoint);
 
     const createCards = (data)=>{
         // takes data and creates card 
@@ -26,23 +28,36 @@ const Main = (props)=>{
         let cards = [];
 
         data.results.forEach((value,index,array)=>{
-            cards.push(<Card siteName={value.siteName} encPassword={value.encPassword} uniqueKey={index}/>)
+            // console.log(value.id)
+            cards.push(<Card siteName={value.siteName} encPassword={value.encPassword} uniqueKey={value.id} delStatus={del} delMethod = {deleteCard}/>)
         })
 
-        console.log(cards);
+        // console.log(cards);
 
         return cards; // returns cards 
     }
 
-    console.log(isAuthenticated);
+    const deleteCard = (passwordKey)=>{
+        // delete card logic
+        // fetch(`/passwords/deletePassword/${passwordKey}`,{
+        //     method:"DELETE"
+        // }).then(res=>console.log("Clicked"))
+        fetch(`/passwords/deletePassword/${passwordKey}`,{
+            method:"DELETE"
+        }).then(res=>refetch()) // on succesful return of resolved promise fetch method is called which causes change in state of refetchIndex
+        // .then((res)=>console.log("Clicked")) // delete password based off password key
+        // .catch((err)=>console.log("Error"))
+
+    }
+
+    // console.log(isAuthenticated);
     // console.log(size?.width);
 
     if(!isAuthenticated){
         // triggered if user is not authenticated 
         return <Navigate to='/login' replace={true}/>
     }
-
-    console.log(endpoint);
+    // console.log(endpoint);
 
     return (
         <div id="main-passwords-container">
@@ -51,7 +66,7 @@ const Main = (props)=>{
             <main id="main-container">
                 <div id="actions-container">
                     <div className="password-action-btns">
-                        <FontAwesomeIcon id="delete-btn" icon={faTrash} color="black"/>
+                        {del?<FontAwesomeIcon id="stop-delete-btn" icon={faStop} color="black" onClick={()=>setDelStatus(false)}/>:<FontAwesomeIcon id="delete-btn" icon={faTrash} color="black" onClick={()=>setDelStatus(true)}/>}
                     </div>
                     <div className="password-action-btns">
                         <a href="/passwords/add"><FontAwesomeIcon id="add-btn" icon={faPlus} color="black"/></a>
@@ -62,8 +77,11 @@ const Main = (props)=>{
                 </div>
 
                 <div id="passwords-container">
-                    {(loading||error) && <h4 id="loading-title">Loading...</h4>}
-                    {data && createCards(data)}
+                    {/* {error||loading && <h4 id="loading-title">Loading...</h4>}
+                    {data.statusCode===400 && <h4></h4>} */}
+                    {(error||loading) && <h4>Loading</h4>}
+                    {(data?.results)?createCards(data):<h4>No encrypted Password on your account</h4>}
+                    {/* {data && createCards(data)} */}
                 </div>
 
                 <div id="arrow-action-container">

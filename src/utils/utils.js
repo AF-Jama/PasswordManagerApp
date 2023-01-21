@@ -17,6 +17,16 @@ const createAuthKey = (vaultKey,master)=>{
     hashs = hashs.toString('hex');
     return hashs; // return auth key hash 
 }
+const generateRandomString = () => {
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = ' ';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < 5; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result; // returns random 5 character salt string 
+}
 
 // const decodeToken = (token)=>{
 //         // returns decoded token which contains payload specified when logged in
@@ -47,7 +57,8 @@ const keyframeShake = {
 export default createVaultKey;
 export{
     createAuthKey,
-    keyframeShake
+    keyframeShake,
+    generateRandomString
 };
 
 // createAuthKey('sdskdjfd','klsdmdjkdsd').then(hash=>console.log(hash))
