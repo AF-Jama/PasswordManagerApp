@@ -55,13 +55,13 @@ const getPasswords = async (req,res)=>{
             // next is triggered if last password of users total passwords does not match the last password of a particular page. If ids match it means the last page has been reached 
             next:(allPasswords[allPasswords.length-1].id===passwords[passwords.length-1].id)?'':`/passwords/getPasswords?page=${page+1}&limit=${limit}&cursor=${passwords[passwords.length-1].id}`,
             'results':passwords,
-            prev:((page-1)===0)?'':`/passwords/getPasswords?page=${page-1}&limit=${limit}&cursor=${allPasswords[((page-1)*limit)-limit].id}` // need to implement reverse api endpoint 
+            prev:((page-1)===0)?'':`/passwords/getPasswords?page=${page-1}&limit=${limit}&cursor=${((page-1)===1?allPasswords[((page-1)*limit)-limit].id:allPasswords[((page-1)*limit)-limit-1].id)}` // need to implement reverse api endpoint 
         })
         
     }catch(error){
         return res.json({
             statusCode:400,
-            msg:"unable to retrieve passwords"
+            msg:"unable to retrieve"
         })
     }
 }

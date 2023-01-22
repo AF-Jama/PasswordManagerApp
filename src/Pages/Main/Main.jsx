@@ -52,6 +52,7 @@ const Main = (props)=>{
 
     // console.log(isAuthenticated);
     // console.log(size?.width);
+    console.log(data)
 
     if(!isAuthenticated){
         // triggered if user is not authenticated 
@@ -80,6 +81,7 @@ const Main = (props)=>{
                     {/* {error||loading && <h4 id="loading-title">Loading...</h4>}
                     {data.statusCode===400 && <h4></h4>} */}
                     {(error||loading) && <h4>Loading</h4>}
+                    {(data?.results.length===0 && page!==1) && setPage(page-1)}
                     {(data?.results)?createCards(data):<h4>No encrypted Password on your account</h4>}
                     {/* {data && createCards(data)} */}
                 </div>
