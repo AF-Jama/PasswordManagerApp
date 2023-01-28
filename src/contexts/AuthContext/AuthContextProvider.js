@@ -65,7 +65,7 @@ const AuthContextProvider = ({children})=>{
         }
 
 
-    },[masterPassword]); // runs on initial render(initial mount) and every update 
+    },[masterPassword]); // runs on initial render(initial mount) and every dependency array update/change  
 
     return (
         <authContext.Provider value={{masterPassword,isAuthenticated,user,logout}}> 

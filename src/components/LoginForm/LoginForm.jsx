@@ -35,7 +35,9 @@ const LoginForm = (props)=>{
         if(res.statusCode===200){
             // trigerred if status code is not 200
             console.log("Login");
-            Cookies.set('master_password',masterPassword);
+            Cookies.set('master_password',masterPassword,{
+                expires:new Date(Date.now() + 3600000)
+            }); // sets master password login as cookie after succesful login (200 status returned)
             window.location.href="/passwords"
         }
         

@@ -9,11 +9,14 @@ import useFetch from "../../customHooks/useFetch";
 import useSize from "../../customHooks/useSize";
 import { generateRandomString } from "../../utils";
 import './Main.css';
+import { set } from "react-hook-form";
 
 
 const Main = (props)=>{
     const { masterPassword,isAuthenticated,user,login,logout } = useAuth();
     const size = useSize(); // useSize custom hook which returns window width on mount
+    const [next,setNext] = useState('');
+    const [prev,setPrev] = useState('');
     const [page,setPage] = useState(1); // sets endpoint limit 
     const [limit,setLimit] = useState(4);
     const [del,setDelStatus] = useState(false); // sets delete status of child cards
@@ -52,13 +55,26 @@ const Main = (props)=>{
 
     // console.log(isAuthenticated);
     // console.log(size?.width);
-    console.log(data)
 
     if(!isAuthenticated){
         // triggered if user is not authenticated 
         return <Navigate to='/login' replace={true}/>
     }
     // console.log(endpoint);
+
+    // if(data && data.results.length===0 && page!==1){
+    // }
+
+    if((data && data.results.length===0 && data.statusCode===400 && page!==1)){
+        console.log("TRIGGERED DATA ON DOES NOT EXIST")
+        console.log(`curr page is ${page}`)
+        setPage(currPage=>currPage-1);
+        setEndpoint(prev)
+        console.log(`currl page is ${page}`)
+    }
+
+    console.log(page)
+    console.log(endpoint)
 
     return (
         <div id="main-passwords-container">
@@ -80,24 +96,28 @@ const Main = (props)=>{
                 <div id="passwords-container">
                     {/* {error||loading && <h4 id="loading-title">Loading...</h4>}
                     {data.statusCode===400 && <h4></h4>} */}
-                    {(error||loading) && <h4>Loading</h4>}
-                    {(data?.results.length===0 && page!==1) && setPage(page-1)}
-                    {(data?.results)?createCards(data):<h4>No encrypted Password on your account</h4>}
-                    {/* {data && createCards(data)} */}
+                    {(!data && error||loading) && <h4>Loading..</h4>}
+                    {(data && data.results.length===0 && page===1) && <h4>No authenticated passwords on your account</h4>}
+                    {/* {(data?.results?.length && page!==1) && setPage(page-1)}
+                    {(!data?.results?.length && page=== 1) && <h4>No encrypted passwords</h4>}
+                    {(data.results)?createCards(data):<h4>No encrypted Password on your account</h4>} */}
+                    {(data) && createCards(data)}
                 </div>
 
                 <div id="arrow-action-container">
                     <div id="arrow-left-container">
                         <FontAwesomeIcon id="left-arrow-icon" className={(page===1)?"disabled-left-arrow":""}  icon={faArrowLeft} color="black" onClick={()=>{
                             setEndpoint(data.prev);
-                            setPage(page-1);
+                            setPage(currPage=>currPage-1);
                         }}/>
                     </div>
                     <p>Page {page}</p>
                     <div id="arrow-right-container">
                         <FontAwesomeIcon id="right-arrow-icon" icon={faArrowRight} className={(!data?.next)?"disabled-right-arrow":""} color="black" onClick={()=>{
+                            setPrev(endpoint) // sets prev state to current endpoint before endpoint state is changed to data.next
+                            setNext(data.next)
+                            setPage(currPage=>currPage+1)
                             setEndpoint(data.next)
-                            setPage(page+1)
                         }}/>
                     </div>
                 </div>

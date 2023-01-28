@@ -40,7 +40,7 @@ const getPasswords = async (req,res)=>{
             take: limit, // specifies number of results to "take" per page 
             skip: (page===1)?undefined:1, // if page query parameter is 1 then skip should be null else skip should be 1 to ensure last result is skipped from previous page 
             cursor: (page===1)?undefined:{
-                id:cursor
+                id:allPasswords[((page)*limit)-limit-1].id // returns id of cursor for next page
             }, // ternary operator which sets cursor 
             where:{
                 authId:authId
@@ -53,14 +53,17 @@ const getPasswords = async (req,res)=>{
 
         return res.json({
             // next is triggered if last password of users total passwords does not match the last password of a particular page. If ids match it means the last page has been reached 
-            next:(allPasswords[allPasswords.length-1].id===passwords[passwords.length-1].id)?'':`/passwords/getPasswords?page=${page+1}&limit=${limit}&cursor=${passwords[passwords.length-1].id}`,
+            next:(allPasswords[allPasswords.length-1].id===passwords[passwords.length-1].id)?'':`/passwords/getPasswords?page=${page+1}&limit=${limit}`,
             'results':passwords,
-            prev:((page-1)===0)?'':`/passwords/getPasswords?page=${page-1}&limit=${limit}&cursor=${((page-1)===1?allPasswords[((page-1)*limit)-limit].id:allPasswords[((page-1)*limit)-limit-1].id)}` // need to implement reverse api endpoint 
+            prev:((page-1)===0)?'':`/passwords/getPasswords?page=${page-1}&limit=${limit}` // need to implement reverse api endpoint 
         })
         
     }catch(error){
+        console.log("SUCCESFULLO")  
+        console.log(error)
         return res.json({
             statusCode:400,
+            "results":[], // returns empty results array on error
             msg:"unable to retrieve"
         })
     }
