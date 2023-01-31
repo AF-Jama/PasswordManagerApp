@@ -6,6 +6,7 @@ import SignUp from './Pages/Signup';
 import Login from './Pages/Login';
 import AddForm from './components/AddForm';
 import Add from './Pages/Add';
+import WelcomePage from './Pages/WelcomePage';
 import Main from './Pages/Main';
 import Card from './components/Card';
 import RegisterForm from './components/RegisterForm';
@@ -20,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Header/>}/>
+        <Route path='/' element={<WelcomePage/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/passwords' element={<Main/>}/>

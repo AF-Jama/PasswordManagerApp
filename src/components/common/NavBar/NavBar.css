@@ -43,11 +43,11 @@
     font-size: 1.9rem;
 }
 
-#action-btn{
+#nav-links-container>#action-btn{
     transition: width 1s ease-in-out;
 }
 
-#action-btn:hover{
+#nav-links-container>#action-btn:hover{
     width: 150px;
 }
 
