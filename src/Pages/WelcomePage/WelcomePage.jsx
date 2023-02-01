@@ -2,6 +2,7 @@ import React,{useState,useEffect,useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock,faFile,faFingerprint,faDesktop,faShare,faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import Header from "../../components/common/Header";
+import FreeCard,{PremiumCard,FamilyCard} from "../../components/PricingCard";
 import useAuth from "../../customHooks/auth";
 import ActionButton from "../../components/common/ActionButton";
 import './WelcomePage.css';
@@ -27,11 +28,7 @@ const WelcomePage = ()=>{
                                  simply and securely.
                             </p>
 
-                            <ol>
-                                <li>Safe</li>
-                                <li>No Knowledge based encyption</li>
-                                <li>Free</li>
-                            </ol>
+
                         </div>
 
                         <div id="btns-container">
@@ -105,8 +102,15 @@ const WelcomePage = ()=>{
 
                 <div id="pricing-container">
                     <div id="inner-pricing-container">
-                        
+                        <h2>Pricing</h2>
+
+                        <div id="pricing-card-container">
+                            <FreeCard/> 
+                            <PremiumCard/>
+                            <FamilyCard/>
+                        </div>
                     </div>
+
                 </div>         
             </main>
 

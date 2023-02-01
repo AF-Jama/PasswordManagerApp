@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pricing-card{
+}
+
+#family-pricing-card>.section1>.btn-container>button{
+    background-color: red;
+    color: white;
+}
+
+#family-pricing-card{
+    border:2px solid green;
+    content: 'test';
+}
+
+#best-value-text{
+    color: white;
+    background-color: green;
+    width: 100%;
+}

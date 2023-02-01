@@ -15,10 +15,13 @@
 }
 
 #main-welcome-page{
+    display: flex;
+    flex-direction: column;
     /* flex: 1; */
 }
 
 #explanation-div{
+    flex: 3;
     background-color: #edeef0;
 }
 
@@ -83,6 +86,26 @@
     /* margin: 0 0 2rem 0; */
 }
 
+#inner-pricing-container{
+    width: 90%;
+    max-width: var(--maxWidth);
+    margin: 0 auto;
+    /* border: 2px solid red; */
+}
+
+#inner-pricing-container>h2{
+    font-family: neo-sans,Arial,Helvetica,sans-serif;
+}
+
+#inner-pricing-container>h2::after{
+    content: '';
+    display: block;
+    width: 100px;
+    height: 1px;
+    background-color: black;
+    margin: 0.5rem auto;
+}
+
 @media screen and (min-width:700px){
     #btns-container>button{
         display: inline;
@@ -100,5 +123,12 @@
         display: grid;
         grid-template-columns: repeat(3,1fr);
         grid: 20px 20px;
+    }
+}
+
+@media screen and (min-width:720px){
+    #pricing-card-container{
+        display: flex;
+        flex-wrap: wrap;
     }
 }
