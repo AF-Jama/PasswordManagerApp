@@ -2,6 +2,7 @@ import React,{useState,useEffect,useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock,faFile,faFingerprint,faDesktop,faShare,faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 import FreeCard,{PremiumCard,FamilyCard} from "../../components/PricingCard";
 import useAuth from "../../customHooks/auth";
 import ActionButton from "../../components/common/ActionButton";
@@ -113,6 +114,8 @@ const WelcomePage = ()=>{
 
                 </div>         
             </main>
+
+            <Footer/>
 
             
         </div>
