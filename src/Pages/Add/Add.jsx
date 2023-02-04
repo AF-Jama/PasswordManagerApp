@@ -16,8 +16,12 @@ const Add = (props)=>{
     
                 <div id="main-add-container">
                     <div className="add-card">
-                        <h4>Add password to your vault</h4>
+                        <div id="add-card-title">
+                            <h4>Add Password</h4>
+                            <p>Enter Password</p>
+                        </div>
                         <AddForm/>
+                        <hr />
                         <a href="/passwords">Go to my passwords</a>
                     </div>
                 </div>

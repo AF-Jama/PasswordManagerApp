@@ -13,6 +13,17 @@
     position:relative;
 } */
 
+.input-group>input{
+    width: 90%;
+    padding: 0.5rem 0;
+    border-radius: 5px;
+}
+#submit-btn{
+    width: 90%;
+    padding: 1rem 0;
+    background-color: #6243e6;
+}
+
 .input-group{
     /* border: 2px solid red; */
     /* width: 90%;
@@ -39,4 +50,10 @@
     max-width: 150px;
     margin: 0 auto;
 } */
+
+@media screen and (min-width:450px){
+    #submit-btn{
+        max-width: 200px;
+    }
+}
 

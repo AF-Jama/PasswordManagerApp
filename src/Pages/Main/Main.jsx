@@ -66,15 +66,13 @@ const Main = (props)=>{
     // }
 
     if((data && data.results.length===0 && data.statusCode===400 && page!==1)){
-        console.log("TRIGGERED DATA ON DOES NOT EXIST")
-        console.log(`curr page is ${page}`)
-        setPage(currPage=>currPage-1);
-        setEndpoint(prev)
-        console.log(`currl page is ${page}`)
+        console.log("TRIGGERED DATA ON DOES NOT EXIST");
+        setPage(1);
+        setEndpoint(`/passwords/getPasswords?page=${page}&limit=${limit}`);
     }
 
-    console.log(page)
-    console.log(endpoint)
+    // console.log(page)
+    // console.log(endpoint)
 
     return (
         <div id="main-passwords-container">

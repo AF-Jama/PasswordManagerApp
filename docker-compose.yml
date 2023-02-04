@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  react-app: # client side container service
+    image: ajama/passwordmanagerreactapp:1
+    restart: always
+    ports:
+      - '3000:80'
+
+  db: # database container service
+    image: "mysql:latest"
+    restart: always
+    ports:
+      - '3307:3306'
+
+    environment:
+        MYSQL_ROOT_PASSWORD: 
+        MYSQL_DATABASE: 
+        MYSQL_USER: 
+        MYSQL_PASSWORD: 
+
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+
+  server: # sevrer container service 
+    image: ajama/passwordmanagerapi:1    
+    restart: always
+    ports:
+      - '5051:5050'
+
+networks:
+ webappnetwork:
+  driver: bridge
