@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthContextProvider from './contexts/AuthContext/AuthContextProvider.js';
 import ThemeContextProvider from './contexts/ThemeContext/ThemeContextProvider.js';
+import PageContextProvider from './contexts/PageContext/PageContextProvider.js';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom' // BrowserRouter used on top level app render 
 import 'react-app-polyfill/ie9'
@@ -15,7 +16,9 @@ root.render( // renders app
   <BrowserRouter> 
     <AuthContextProvider>
       <ThemeContextProvider>
-        <App />
+        <PageContextProvider>
+          <App />
+        </PageContextProvider>
       </ThemeContextProvider>
     </AuthContextProvider>
   </BrowserRouter>

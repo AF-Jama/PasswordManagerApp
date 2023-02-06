@@ -1,32 +1,54 @@
-version: '3.9'
+version: '3'
 services:
-  react-app: # client side container service
-    image: ajama/passwordmanagerreactapp:1
-    restart: always
+  db:
+    image: mysql
     ports:
-      - '3000:80'
-
-  db: # database container service
-    image: "mysql:latest"
-    restart: always
-    ports:
-      - '3307:3306'
-
+      - "3307:3306"
     environment:
-        MYSQL_ROOT_PASSWORD: 
-        MYSQL_DATABASE: 
-        MYSQL_USER: 
-        MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: Ronaldo81.
+      MYSQL_DATABASE: password_manage
+      # MYSQL_USER: user
+      # MYSQL_PASSWORD: password
 
     volumes:
-      - ./dump:/docker-entrypoint-initdb.d
-
-  server: # sevrer container service 
-    image: ajama/passwordmanagerapi:1    
-    restart: always
+      - ./dump:/docker-entrypoint-initdb.d 
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     ports:
-      - '5051:5050'
+      - "5051:5050"
+    environment:
+      DATABASE_URL: mysql://root:Ronaldo81.@db:3306/password_manage
+      TOKEN_SECRET: 673d0b35fcd2c89fdd49a18fe4a54325c872605b4bd00bb4314ff266d4c17a1f0c4659b7eb1758a2cb3637b2f568ca3ee808d72c3f924beb88797dc398568403
+      user: root
+      password: Ronaldo81.
+      
+    depends_on:
+      - db
 
-networks:
- webappnetwork:
-  driver: bridge
+  nginx:
+    restart: always
+    build: 
+      context: .
+
+    ports:
+      - '80:80'
+
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+    depends_on:
+      - react
+
+  react:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      - REACT_APP_SERVER_ENDPOINT=http://server:5050
+    ports:
+      - "3005:80"
+    depends_on:
+      - server

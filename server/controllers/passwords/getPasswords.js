@@ -31,7 +31,11 @@ const getPasswords = async (req,res)=>{
             where:{
                 authId:authId
             }
-        }) // return total number of results based on where conditon of authId foreign key        
+        }) // return total number of results based on where conditon of authId foreign key
+
+        if(!allPasswords){
+            throw new Error("No passwords on account")
+        }
 
         // console.log(`Total number of passwords is ${totalPasswordsCount}`);
         // console.log(`Last id of all passwords is ${allPasswords[allPasswords.length-1].id}`);
@@ -51,6 +55,11 @@ const getPasswords = async (req,res)=>{
 
         }) // returns passwords as pages depending on the cursor and limit(number of results of pages)
 
+        if(!passwords){
+            // triggered if no password on page
+            throw new Error("No passwords on page");
+        }
+
         return res.json({
             // next is triggered if last password of users total passwords does not match the last password of a particular page. If ids match it means the last page has been reached 
             next:(allPasswords[allPasswords.length-1].id===passwords[passwords.length-1].id)?'':`/passwords/getPasswords?page=${page+1}&limit=${limit}`,
@@ -64,7 +73,7 @@ const getPasswords = async (req,res)=>{
         return res.json({
             statusCode:400,
             "results":[], // returns empty results array on error
-            msg:"unable to retrieve"
+            msg:error
         })
     }
 }

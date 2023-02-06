@@ -1,6 +1,6 @@
 FROM node:latest
 # Set the working directory to /api
-# WORKDIR /api
+WORKDIR /api
 # copy package.json into the container at /api
 COPY package*.json ./
 # install dependencies

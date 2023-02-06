@@ -15,7 +15,7 @@ import NavBar from './components/common/NavBar';
 import Header from './components/common/Header';
 import './App.css';
 
-const uri='http://localhost:3000/'
+// const uri='http://localhost:3000/'
 
 function App() {
   return (

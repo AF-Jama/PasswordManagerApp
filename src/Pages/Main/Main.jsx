@@ -6,6 +6,7 @@ import Header from '../../components/common/Header';
 import Card from "../../components/Card";
 import useAuth from "../../customHooks/auth";
 import useFetch from "../../customHooks/useFetch";
+import usePage from "../../customHooks/usePage";
 import useSize from "../../customHooks/useSize";
 import { generateRandomString } from "../../utils";
 import './Main.css';
@@ -14,15 +15,16 @@ import { set } from "react-hook-form";
 
 const Main = (props)=>{
     const { masterPassword,isAuthenticated,user,login,logout } = useAuth();
+    const { page,setPage } = usePage();
     const size = useSize(); // useSize custom hook which returns window width on mount
-    const [next,setNext] = useState('');
-    const [prev,setPrev] = useState('');
-    const [page,setPage] = useState(1); // sets endpoint limit 
+    // const [next,setNext] = useState('');
+    // const [prev,setPrev] = useState('');
+    // const [page,setPage] = useState(1); // sets endpoint limit 
     const [limit,setLimit] = useState(4);
     const [del,setDelStatus] = useState(false); // sets delete status of child cards
     // const limit = useSize();
-    const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}&limit=${limit}`); // sets endpoint state 
-    const { data,loading,error,refetch } = useFetch(endpoint);
+    // const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}&limit=${limit}`); // sets endpoint state 
+    const { data,loading,error,refetch } = useFetch(`http://server:5050/passwords/getPasswords?page=${page}`);
 
     const createCards = (data)=>{
         // takes data and creates card 
@@ -65,10 +67,12 @@ const Main = (props)=>{
     // if(data && data.results.length===0 && page!==1){
     // }
 
-    if((data && data.results.length===0 && data.statusCode===400 && page!==1)){
+    if(page>1 && data.results.length===0){
         console.log("TRIGGERED DATA ON DOES NOT EXIST");
-        setPage(1);
-        setEndpoint(`/passwords/getPasswords?page=${page}&limit=${limit}`);
+        console.log(data.results)
+        console.log(`Page is ${page}`);
+        setPage(page-1);
+        // setEndpoint(`/passwords/getPasswords?page=${page-1}&limit=${limit}`);
     }
 
     // console.log(page)
@@ -105,17 +109,17 @@ const Main = (props)=>{
                 <div id="arrow-action-container">
                     <div id="arrow-left-container">
                         <FontAwesomeIcon id="left-arrow-icon" className={(page===1)?"disabled-left-arrow":""}  icon={faArrowLeft} color="black" onClick={()=>{
-                            setEndpoint(data.prev);
+                            // setEndpoint(data.prev);
                             setPage(currPage=>currPage-1);
                         }}/>
                     </div>
                     <p>Page {page}</p>
                     <div id="arrow-right-container">
                         <FontAwesomeIcon id="right-arrow-icon" icon={faArrowRight} className={(!data?.next)?"disabled-right-arrow":""} color="black" onClick={()=>{
-                            setPrev(endpoint) // sets prev state to current endpoint before endpoint state is changed to data.next
-                            setNext(data.next)
+                            // setPrev(endpoint) // sets prev state to current endpoint before endpoint state is changed to data.next
+                            // setNext(data.next)
                             setPage(currPage=>currPage+1)
-                            setEndpoint(data.next)
+                            // setEndpoint(data.next)
                         }}/>
                     </div>
                 </div>
