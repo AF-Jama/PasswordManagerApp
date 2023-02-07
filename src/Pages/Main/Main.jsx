@@ -24,7 +24,7 @@ const Main = (props)=>{
     const [del,setDelStatus] = useState(false); // sets delete status of child cards
     // const limit = useSize();
     // const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}&limit=${limit}`); // sets endpoint state 
-    const { data,loading,error,refetch } = useFetch(`http://server:5050/passwords/getPasswords?page=${page}`);
+    const { data,loading,error,refetch } = useFetch(`/passwords/getPasswords?page=${page}`);
 
     const createCards = (data)=>{
         // takes data and creates card 
