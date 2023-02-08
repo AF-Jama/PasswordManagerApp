@@ -34,7 +34,7 @@ const AddForm = (props)=>{
             encryptedPassword:encPassword
         } // creates payload object 
 
-        let res = await fetch(`/passwords/addPassword`,{
+        let res = await fetch(`http://server:5050/passwords/addPassword`,{
             method:"POST",
             body:JSON.stringify(payload),
             headers: {
@@ -77,7 +77,7 @@ const AddForm = (props)=>{
             setAddStatus(true);
         }else{
             addShake();
-            addStatus(false);
+            setAddStatus(false);
             return;
         }
 

@@ -11,6 +11,7 @@ import useSize from "../../customHooks/useSize";
 import { generateRandomString } from "../../utils";
 import './Main.css';
 import { set } from "react-hook-form";
+import { type } from "@testing-library/user-event/dist/type";
 
 
 const Main = (props)=>{
@@ -24,7 +25,7 @@ const Main = (props)=>{
     const [del,setDelStatus] = useState(false); // sets delete status of child cards
     // const limit = useSize();
     // const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}&limit=${limit}`); // sets endpoint state 
-    const { data,loading,error,refetch } = useFetch(`/passwords/getPasswords?page=${page}`);
+    const { data,loading,error,refetch } = useFetch(`http://server:5050/passwords/getPasswords?page=${page}`);
 
     const createCards = (data)=>{
         // takes data and creates card 
@@ -47,7 +48,7 @@ const Main = (props)=>{
         // fetch(`/passwords/deletePassword/${passwordKey}`,{
         //     method:"DELETE"
         // }).then(res=>console.log("Clicked"))
-        fetch(`/passwords/deletePassword/${passwordKey}`,{
+        fetch(`http://server:5050/passwords/deletePassword/${passwordKey}`,{
             method:"DELETE"
         }).then(res=>refetch()) // on succesful return of resolved promise fetch method is called which causes change in state of refetchIndex
         // .then((res)=>console.log("Clicked")) // delete password based off password key
@@ -77,6 +78,9 @@ const Main = (props)=>{
 
     // console.log(page)
     // console.log(endpoint)
+    if(data){
+        console.log(data.msg)
+    }
 
     return (
         <div id="main-passwords-container">
@@ -98,12 +102,15 @@ const Main = (props)=>{
                 <div id="passwords-container">
                     {/* {error||loading && <h4 id="loading-title">Loading...</h4>}
                     {data.statusCode===400 && <h4></h4>} */}
-                    {(!data && error||loading) && <h4>Loading..</h4>}
-                    {(data && data.results.length===0 && page===1) && <h4>No authenticated passwords on your account</h4>}
+                    {(!data && (error||loading)) && <h4>Loading...</h4>}
+                    {(data && data.msg==="Access token is not valid") && <h4>{data.msg}</h4>}
+                    {(data && data.results && data.results.length===0 && page===1) && <h4>No authenticated passwords on your account</h4>}
+                    {/* {(data && data.msg==="Access token is not valid") && <h4>SUCCESFULL</h4>}
+                    {(data && data.results.length===0 && page===1) && <h4>No authenticated passwords on your account</h4>} */}
                     {/* {(data?.results?.length && page!==1) && setPage(page-1)}
                     {(!data?.results?.length && page=== 1) && <h4>No encrypted passwords</h4>}
                     {(data.results)?createCards(data):<h4>No encrypted Password on your account</h4>} */}
-                    {(data) && createCards(data)}
+                    {(data && data.results) && createCards(data)}
                 </div>
 
                 <div id="arrow-action-container">

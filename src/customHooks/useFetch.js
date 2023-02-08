@@ -4,7 +4,7 @@ import React,{useEffect,useState} from "react";
 const useFetch = (URL)=>{
     const [data,setData] = useState(null); // sets data state 
     const [loading,setLoading] = useState(true); // sets loading state 
-    const [error,setError] = useState(null); // sets error state 
+    const [error,setError] = useState(false); // sets error state 
     const [refetchIndex, setRefetchIndex] = useState(0); // sets refetch state 
 
     const refetch = ()=> setRefetchIndex((prevFetchIndex)=>prevFetchIndex+1); // method which increments state of refetchIndex
@@ -18,11 +18,11 @@ const useFetch = (URL)=>{
 
                 setData(response);
                 setLoading(false);
-                setError(null);
+                setError(false);
             }catch(error){
                 setData(null)
                 setLoading(true);
-                setError(error);
+                setError(true);
             }
         }
         fetchData();
