@@ -34,7 +34,7 @@ const AddForm = (props)=>{
             encryptedPassword:encPassword
         } // creates payload object 
 
-        let res = await fetch(`http://server:5050/passwords/addPassword`,{
+        let res = await fetch(`/passwords/addPassword`,{
             method:"POST",
             body:JSON.stringify(payload),
             headers: {

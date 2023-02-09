@@ -82,7 +82,7 @@ const RegisterForm = (props)=>{
             email:email,
             authKey:authKey
         } // creating payload object 
-        let res = await fetch('http://server:5050/users/create/',{
+        let res = await fetch('/users/create/',{
             method:"POST",
             body:JSON.stringify(payload),
             headers: {
@@ -99,7 +99,7 @@ const RegisterForm = (props)=>{
 
     const checkIfEmailExists = async (email)=>{
         // triggered and returns bool promise value based if email in req query exists
-        let response = await fetch(`http://server:5050/users/checkUserEmail?email=${email}`)
+        let response = await fetch(`/users/checkUserEmail?email=${email}`)
         response = await response.json()
 
         return response.bool; // returns response object as promise value
@@ -107,7 +107,7 @@ const RegisterForm = (props)=>{
 
     const checkIfUsernameExists = async (username)=>{
         // triggered and returns bool promise value based on if username in req query exists
-        let response = await fetch(`http://server:5050/users/checkUsername?username=${username}`)
+        let response = await fetch(`/users/checkUsername?username=${username}`)
         response = await response.json()
 
         return response.bool; // returns response objects as promise value
