@@ -20,6 +20,7 @@ dotenv.config();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.set('trust proxy',1);
 
 // app.use(logger('dev'));
 app.use(express.json());
@@ -31,7 +32,7 @@ app.use(cors({
   methods: ['GET', 'PUT', 'POST'], 
   allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
   maxAge: 600, 
-  exposedHeaders: ['*', 'Authorization' ] 
+  exposedHeaders: ['*', 'Authorization','set-cookie'] 
 
 }))
 app.use(express.static(path.join(__dirname, 'public')));
