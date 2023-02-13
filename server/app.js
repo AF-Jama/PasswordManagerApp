@@ -25,7 +25,12 @@ app.set('view engine', 'jade');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors())
+app.use(cors({
+  origin: "http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com/",
+  methods: ['GET', 'PUT', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
+  credentials: true
+}))
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', indexRouter);
