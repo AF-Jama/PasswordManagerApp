@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/create',createUser); // creates user
 
-router.post('/login',login) // login user endpoint
+router.get('/login',login) // login user endpoint
 
 router.get('/checkUserEmail',checkUserEmail);
 

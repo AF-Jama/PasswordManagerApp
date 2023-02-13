@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 const login = async (req,res)=>{
     // controllers is triggered when '/login' endpoint is hit.
     try{
-        const {email,authKey} = req.body; // email and authKey generated on client side (from hash of hash((hash(email|master password))| master password) are query payload for the get request
+        const {email,authKey} = req.query; // email and authKey generated on client side (from hash of hash((hash(email|master password))| master password) are query parameters for the get request
         // console.log(userName,masterPassword)
         const user = await prisma.user.findUniqueOrThrow({ // ORM queries user model to find unique user with email and includes auth model data due to the 1:1 relationship or throws error which triggers catch block
             where:{
