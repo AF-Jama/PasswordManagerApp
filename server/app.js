@@ -59,7 +59,7 @@ app.get('/',(req,res)=>{
 
 app.get('/test',(req,res)=>{
   return res.json({
-    "test":"SUCCESFULll"
+    "test":"SUCCESFULllo"
   })
 })
 

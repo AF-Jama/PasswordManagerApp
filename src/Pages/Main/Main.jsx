@@ -25,7 +25,7 @@ const Main = (props)=>{
     const [del,setDelStatus] = useState(false); // sets delete status of child cards
     // const limit = useSize();
     // const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}&limit=${limit}`); // sets endpoint state 
-    const { data,loading,error,refetch } = useFetch(`/passwords/getPasswords?page=${page}`);
+    const { data,loading,error,refetch } = useFetch(`http://54.84.156.236:5050/passwords/getPasswords?page=${page}`);
 
     const createCards = (data)=>{
         // takes data and creates card 
@@ -48,7 +48,7 @@ const Main = (props)=>{
         // fetch(`/passwords/deletePassword/${passwordKey}`,{
         //     method:"DELETE"
         // }).then(res=>console.log("Clicked"))
-        fetch(`/passwords/deletePassword/${passwordKey}`,{
+        fetch(`http://54.84.156.236:5050/passwords/deletePassword/${passwordKey}`,{
             method:"DELETE"
         }).then(res=>refetch()) // on succesful return of resolved promise fetch method is called which causes change in state of refetchIndex
         // .then((res)=>console.log("Clicked")) // delete password based off password key
