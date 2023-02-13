@@ -1,11 +1,10 @@
-import createHttpError from 'http-errors';
 import express from 'express';
 import path,{dirname} from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
 import * as dotenv from 'dotenv';
-// var logger = require('morgan');
+// var logger = require('morgan');  
 
 import indexRouter from './routes/index.js'
 import usersRouter from './routes/users.js'
@@ -26,7 +25,7 @@ app.set('view engine', 'jade');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(cors())
+app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', indexRouter);
@@ -58,12 +57,16 @@ app.get('/',(req,res)=>{
   })
 })
 
+app.get('/test',(req,res)=>{
+  return res.json({
+    "test":"SUCCESFULll"
+  })
+})
+
 // app.get('/test',getAuthHash)
 
 const PORT  = process.env.PORT||5050; // process.env.PORT or port 5050 
 
 app.listen(PORT,()=>{
-  console.log(`Listening on port ${process.env.PORT||5050 }`)
+  console.log(`Listening on port ${process.env.PORT||5050 }`) // stdout listening on port 5050 or process.env.PORT
 })
-
-// module.exports = app;
