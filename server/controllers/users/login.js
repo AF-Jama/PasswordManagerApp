@@ -39,7 +39,7 @@ const login = async (req,res)=>{
         }) // creating jwt token when user succesfully logs in
         console.log("UNDER SIGNING");
         // cookie stored as http only cookie which is only accessible by the server and not by the client 
-        res.cookie('token',token,{ expires: new Date(Date.now() + 3600000), httpOnly: true, secure: true,sameSite: 'none'}) // stores jwt token in httpOnly cookie which is sent in each subsequent request      
+        res.cookie('token',token,{ expires: new Date(Date.now() + 3600000), httpOnly: true, secure: true,sameSite: 'None'}) // stores jwt token in httpOnly cookie which is sent in each subsequent request      
         return res.json({
             msg:"login succesful",
             statusCode:200
