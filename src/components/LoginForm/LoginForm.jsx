@@ -92,6 +92,7 @@ const LoginForm = (props)=>{
         try{
             console.log(authKey);
             let res = await fetch(`http://54.84.156.236:5050/users/login`,{
+                method:"POST",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
