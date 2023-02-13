@@ -91,7 +91,16 @@ const LoginForm = (props)=>{
         // triggered on login
         try{
             console.log(authKey);
-            let res = await fetch(`http://54.84.156.236:5050/users/login?email=${email}&authKey=${authKey}`);
+            let res = await fetch(`http://54.84.156.236:5050/users/login`,{
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body:JSON.stringify({
+                    email:email,
+                    authKey:authKey
+                  })
+            });
             if(!res.ok) throw new Error("Error thrown");
 
             res = await res.json(); // returns json promise value
