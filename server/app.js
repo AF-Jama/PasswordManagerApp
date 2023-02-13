@@ -27,7 +27,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors({
   origin:"http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com",
-  credentials:true
+  credentials:true,
+  methods: ['GET', 'PUT', 'POST'], 
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
+  maxAge: 600, 
+  exposedHeaders: ['*', 'Authorization' ] 
+
 }))
 app.use(express.static(path.join(__dirname, 'public')));
 
