@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(cors({
   origin:"http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com",
   credentials:true,
-  methods: ['GET', 'PUT', 'POST'], 
+  methods: ['GET', 'PUT', 'POST',"DELETE"], 
   allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
   maxAge: 600, 
   exposedHeaders: ['*', 'Authorization','set-cookie'] 
