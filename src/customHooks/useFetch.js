@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from "react";
+import useAuth from "./auth";
 
 
 const useFetch = (URL)=>{
@@ -6,13 +7,18 @@ const useFetch = (URL)=>{
     const [loading,setLoading] = useState(true); // sets loading state 
     const [error,setError] = useState(false); // sets error state 
     const [refetchIndex, setRefetchIndex] = useState(0); // sets refetch state 
+    const {token} = useAuth(); // useAuth hook returns json web token(JWT)
 
     const refetch = ()=> setRefetchIndex((prevFetchIndex)=>prevFetchIndex+1); // method which increments state of refetchIndex
 
     useEffect(()=>{
         const fetchData = async ()=>{
             try{
-                let response = await fetch(URL);
+                let response = await fetch(URL,{
+                    headers:{
+                        'Authorization': token // sets Authorization header to json web token(JWT) which will be verified server side
+                    }
+                });
                 if(!response.ok) throw Error;
                 response = await response.json();
 

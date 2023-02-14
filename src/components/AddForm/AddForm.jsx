@@ -39,7 +39,8 @@ const AddForm = (props)=>{
             body:JSON.stringify(payload),
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': token // sets Authorization header to json web token(JWT) which will be verified server side
             }
         }); 
 

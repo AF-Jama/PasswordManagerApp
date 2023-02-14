@@ -15,7 +15,7 @@ import { type } from "@testing-library/user-event/dist/type";
 
 
 const Main = (props)=>{
-    const { masterPassword,isAuthenticated,user,login,logout } = useAuth();
+    const { masterPassword,isAuthenticated,user,login,logout,token } = useAuth();
     const { page,setPage } = usePage();
     const size = useSize(); // useSize custom hook which returns window width on mount
     // const [next,setNext] = useState('');
@@ -49,7 +49,10 @@ const Main = (props)=>{
         //     method:"DELETE"
         // }).then(res=>console.log("Clicked"))
         fetch(`http://54.84.156.236:5050/passwords/deletePassword/${passwordKey}`,{
-            method:"DELETE"
+            method:"DELETE",
+            headers:{
+                'Authorization': token // sets Authorization header to json web token(JWT) which will be verified server side
+            }
         }).then(res=>refetch()) // on succesful return of resolved promise fetch method is called which causes change in state of refetchIndex
         // .then((res)=>console.log("Clicked")) // delete password based off password key
         // .catch((err)=>console.log("Error"))

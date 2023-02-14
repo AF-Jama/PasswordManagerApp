@@ -41,34 +41,36 @@ const AuthContextProvider = ({children})=>{
     useEffect(()=>{
         console.log("HERE")
         const cookieMasterPassword = Cookies.get('master_password'); // returns hashed master password used as key to encrypt and decrypt passwords
+        const cookieToken = Cookies.get('token') // returns json web token stored as client side cookie
         console.log(cookieMasterPassword);
 
-        if((!masterPassword) && (cookieMasterPassword)){
+        if((!masterPassword && !token) && (cookieMasterPassword && token)){
             // triggered if cookie token or cookie master password exist but token or master password does not exist
             setMasterPassword(cookieMasterPassword);
+            setToken(cookieToken);
             setIsAuthenticated(true);
         }
 
-        if((masterPassword) && (masterPassword===cookieMasterPassword)){
+        if((masterPassword && token) && ((masterPassword===cookieMasterPassword) && (token===cookieToken))){
             // triggered if token and master password exist and match cookie values meaning user is logged in
             console.log("USER TOKEN AND MASTER PASSWORD EXIST")
         }
 
-        if((!masterPassword) && (!cookieMasterPassword)){
+        if((!masterPassword && !token) && (!cookieMasterPassword && !cookieToken)){
             // on initial render (on mount) 
             console.log("INITIAL MOUNT");
         }
 
-        if((masterPassword) && (masterPassword!==cookieMasterPassword)){
-            // triggered if master password exists and master password does not cookie master password 
+        if((masterPassword||token) && ((masterPassword!==cookieMasterPassword) || (token!==cookieToken))){
+            // triggered if master password or token exists and master password or token does not match cookie master password or cookie token
             logout();
         }
 
 
-    },[masterPassword]); // runs on initial render(initial mount) and every dependency array update/change  
+    },[masterPassword,token]); // runs on initial render(initial mount) and every dependency array update/change  
 
     return (
-        <authContext.Provider value={{masterPassword,isAuthenticated,user,logout}}> 
+        <authContext.Provider value={{masterPassword,isAuthenticated,user,logout,token}}> 
             {children}
         </authContext.Provider>
     )
