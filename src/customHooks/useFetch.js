@@ -7,7 +7,7 @@ const useFetch = (URL)=>{
     const [loading,setLoading] = useState(true); // sets loading state 
     const [error,setError] = useState(false); // sets error state 
     const [refetchIndex, setRefetchIndex] = useState(0); // sets refetch state 
-    const {token} = useAuth(); // useAuth hook returns json web token(JWT)
+    const {token} = useAuth();
 
     const refetch = ()=> setRefetchIndex((prevFetchIndex)=>prevFetchIndex+1); // method which increments state of refetchIndex
 

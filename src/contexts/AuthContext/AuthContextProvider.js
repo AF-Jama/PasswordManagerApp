@@ -18,6 +18,7 @@ const AuthContextProvider = ({children})=>{
         setIsAuthenticated(false);
         setUser(null);
         Cookies.remove('master_password');
+        Cookies.remove('token');
     }
 
     // const login = (token,masterPassword)=>{
@@ -44,14 +45,14 @@ const AuthContextProvider = ({children})=>{
         const cookieToken = Cookies.get('token') // returns json web token stored as client side cookie
         console.log(cookieMasterPassword);
 
-        if((!masterPassword && !token) && (cookieMasterPassword && token)){
+        if((!masterPassword && !token) && (cookieMasterPassword && cookieToken)){
             // triggered if cookie token or cookie master password exist but token or master password does not exist
             setMasterPassword(cookieMasterPassword);
-            setToken(cookieToken);
+            setToken(cookieToken)
             setIsAuthenticated(true);
         }
 
-        if((masterPassword && token) && ((masterPassword===cookieMasterPassword) && (token===cookieToken))){
+        if((masterPassword && token) && ((masterPassword===cookieMasterPassword) &&(token===cookieToken))){
             // triggered if token and master password exist and match cookie values meaning user is logged in
             console.log("USER TOKEN AND MASTER PASSWORD EXIST")
         }
@@ -61,7 +62,7 @@ const AuthContextProvider = ({children})=>{
             console.log("INITIAL MOUNT");
         }
 
-        if((masterPassword||token) && ((masterPassword!==cookieMasterPassword) || (token!==cookieToken))){
+        if((masterPassword||token) && ((masterPassword!==cookieMasterPassword) && (token!==cookieToken))){
             // triggered if master password or token exists and master password or token does not match cookie master password or cookie token
             logout();
         }

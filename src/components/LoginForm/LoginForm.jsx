@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import createVaultKey,{createAuthKey,keyframeShake  } from "../../utils";
 import './LoginForm.css';
-import { TokenExpiredError } from "jsonwebtoken";
 
 
 const LoginForm = (props)=>{
@@ -96,9 +95,7 @@ const LoginForm = (props)=>{
         // triggered on login
         try{
             console.log(authKey);
-            let res = await fetch(`http://54.84.156.236:5050/users/login?email=${email}&authKey=${authKey}`,{
-                credentials:'include'
-            });
+            let res = await fetch(`http://54.84.156.236:5050/users/login?email=${email}&authKey=${authKey}`);
             if(!res.ok) throw new Error("Error thrown");
 
             res = await res.json(); // returns json promise value
