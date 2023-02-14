@@ -39,14 +39,13 @@ const login = async (req,res)=>{
         }) // creating jwt token when user succesfully logs in
         console.log("UNDER SIGNING");
         // cookie stored as http only cookie which is only accessible by the server and not by the client 
-        res
-        .cookie("token", token, {
+        res.cookie("token", token, {
           path: "/",
           domain: "http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com",
           maxAge: new Date(Date.now() + 3600000),
           httpOnly: true,
           secure: true,
-          sameSite: "None"
+          sameSite: "None",
         })
         // res.cookie('token',token,{ expires: new Date(Date.now() + 3600000), httpOnly: true, secure: true,domain:"http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com"}) // stores jwt token in httpOnly cookie which is sent in each subsequent request      
         return res.json({
