@@ -9,6 +9,8 @@ import { Navigate, useNavigate } from "react-router";
 const AddForm = (props)=>{
     const { masterPassword,token } = useAuth();
 
+    console.log(token);
+
     const {register,handleSubmit,formState:{errors}} = useForm({
         defaultValues:{
             name:'',

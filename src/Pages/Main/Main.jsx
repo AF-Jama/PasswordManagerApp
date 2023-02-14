@@ -81,9 +81,10 @@ const Main = (props)=>{
 
     // console.log(page)
     // console.log(endpoint)
-    if(data){
-        console.log(data.msg)
-    }
+    // if(data){
+    //     console.log(data.msg)
+    // }
+    console.log(data);
 
     return (
         <div id="main-passwords-container">
