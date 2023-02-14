@@ -36,15 +36,14 @@ const LoginForm = (props)=>{
         if(res.statusCode===200){
             // trigerred if status code is not 200
             console.log("Login");
-            console.log('token is')
             console.log(res.token)
-            Cookies.set('token',res.token,{
-                expires: new Date(Date.now()+3600000)
-            }) // sets json web token (JWT) to client side cookie after succesful login (200 status returned)
             Cookies.set('master_password',masterPassword,{
                 expires:new Date(Date.now() + 3600000)
             }); // sets master password login as cookie after succesful login (200 status returned)
-            // window.location.href="/passwords"
+            Cookies.set('token',res.token,{
+                expires: new Date(Date.now()+3600000)
+            }) // sets json web token (JWT) to client side cookie after succesful login (200 status returned)
+            window.location.href="/passwords"
         }
         
         console.log("Unable to login");
