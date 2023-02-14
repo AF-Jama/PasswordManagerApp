@@ -44,7 +44,7 @@ const LoginForm = (props)=>{
             Cookies.set('master_password',masterPassword,{
                 expires:new Date(Date.now() + 3600000)
             }); // sets master password login as cookie after succesful login (200 status returned)
-            window.location.href="/passwords"
+            // window.location.href="/passwords"
         }
         
         console.log("Unable to login");
