@@ -4,6 +4,8 @@ import TOKEN_SECRET from '../config/config.js';
 
 const jwtMiddleware = (req,res,next)=>{
     try{
+        console.log(req.headers)
+        console.log(req.header)
         const token = req.headers.Authorization;
         console.log(token)
         if(!token) throw new Error("No Token available in cookie"); // error triggered if no token is present in cookie
