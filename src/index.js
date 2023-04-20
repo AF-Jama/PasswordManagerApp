@@ -12,6 +12,11 @@ import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+console.log = () => {}
+console.error = () => {}
+console.debug = () => {}
+
 root.render( // renders app 
   <BrowserRouter> 
     <AuthContextProvider>

@@ -26,23 +26,24 @@ app.set('trust proxy',1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({
-  origin:"http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com",
-  credentials:true,
-  methods: ['GET', 'PUT', 'POST',"DELETE"], 
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
-  maxAge: 600, 
-  exposedHeaders: ['*', 'Authorization','set-cookie'] 
+// app.use(cors({
+//   origin:"http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com",
+//   credentials:true,
+//   methods: ['GET', 'PUT', 'POST',"DELETE"], 
+//   allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
+//   maxAge: 600, 
+//   exposedHeaders: ['*', 'Authorization','set-cookie'] 
 
-}))
+// }))
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Origin', "http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header('Access-Control-Allow-Credentials', true);
+//   res.header('Access-Control-Allow-Origin', "http://passwordmanagerbucket.s3-website-us-east-1.amazonaws.com");
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+//   next();
+// });
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', indexRouter);
