@@ -12,6 +12,8 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #343434;
+    color: white;
 }
 
 #main-welcome-page{
@@ -22,7 +24,7 @@
 
 #explanation-div{
     flex: 5;
-    background-color: #edeef0;
+    /* background-color: #4e25d9; */
     padding: 0 0 10rem 0;
 }
 
@@ -53,7 +55,7 @@
 }
 
 #btns-container>button:nth-child(2){
-    background-color: #3b70d4;
+    /* background-color: #3b70d4; */
 }
 
 /* #btns-container>button:hover{
@@ -65,9 +67,14 @@
 }
 
 #pros-container{
+    /* background-color: #D94E25; */
+}
+
+#pros-inner-container{
     width:90%;
     max-width: var(--maxWidth);
     margin: 0 auto;
+    
 }
 
 #heading-container{
@@ -78,17 +85,30 @@
     font-size: 2rem;
 }
 
+#card-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .card{
-    height: auto;
-    width: 90%;
-    max-width: 400px;
+    height: 300px;
+    /* width: 90%; */
+    max-width: 350px;
     margin: 0 auto;
     margin-bottom: 2rem;
     /* margin: 0 0 2rem 0; */
+    box-shadow: 0 10px 12px 0 rgba(0,0,0,0.2);
+    padding: 3rem 2rem;
+}
+
+.card>h2{
+    color: black;
 }
 
 #pricing-container{
     padding: 0 0 2rem 0;
+    /* background-color: #B0D925; */
 }
 
 #inner-pricing-container{

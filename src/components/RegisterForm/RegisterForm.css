@@ -27,6 +27,15 @@
     /* background-color: red; */
 }
 
+.input-group>input{
+    /* border: 2px solid red; */
+    padding: 1rem !important; 
+}
+
+.input-group>input::placeholder{
+    color: black;
+}
+
 #submit-btn{
     padding: 0.5rem 2.7rem;
     border-radius: 5px;

@@ -108,7 +108,7 @@ const AddForm = (props)=>{
             </div>
 
             <div className="input-group">
-                <input type="text" id="site-password-input" className="text-input" placeholder="Enter Site Password" {...register('password',{
+                <input type="password" id="site-password-input" className="text-input" placeholder="Enter Site Password" {...register('password',{
                     min:8,
                     required:"Password is required and must be atleast 8 characters",
                     pattern:{

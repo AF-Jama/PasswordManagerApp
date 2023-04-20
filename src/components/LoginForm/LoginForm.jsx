@@ -136,7 +136,7 @@ const LoginForm = (props)=>{
                 <p>{errors.email?.message}</p>
             </div>
             <div className="input-group">
-                <input style={{color:"black"}} className="input-text-form" {...register('master_password',{
+                <input type='password' style={{color:"black"}} className="input-text-form" {...register('master_password',{
                     minLength:12,
                     maxLength:50,
                     required:"Master Password is required",
