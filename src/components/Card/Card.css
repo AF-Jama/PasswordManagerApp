@@ -11,14 +11,10 @@
 #card{
     display:flex;
     flex-direction: column;
-    height: 150px;
     justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: box-shadow 1s ease-in-out;
-    background-color: #A1D960;
-    width: 90%;
-    margin: 0 auto;
-    border-radius: 5px;
+    /* background-color: #A1D960; */
 }
 
 #passwords-detail-container>p{
@@ -34,12 +30,13 @@
 }
 
 #enc-dec-btn{
-
+    position: relative;
+    top: -10px;
 }
 
 #card>button{
-    width:100px;
-    margin: 0 auto;
+    /* width:100px;
+    margin: 0 auto; */
 }
 
 .card-shake{
@@ -66,12 +63,12 @@
 }
 
 @media screen and (min-width:500px){
-    #card{
+    /* #card{
         width: auto;
         margin: 0;
         flex: 0 0 200px;
         height: 200px;
         flex-wrap:wrap;
         border-radius: 5px;
-    }
+    } */
 }
