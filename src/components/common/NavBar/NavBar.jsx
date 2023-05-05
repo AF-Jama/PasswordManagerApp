@@ -35,7 +35,7 @@ const NavBar = ({visibility})=>{
                     </div>
 
                     <div className="action-btn">
-                        <a href="/login" id="signout"><ActionButton text="Signup"/></a>
+                        <a href="/signup" id="signout"><ActionButton text="Signup"/></a>
                     </div>
                 </div>
                 
