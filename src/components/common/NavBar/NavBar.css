@@ -8,54 +8,59 @@
     --maxWidth:1300px;
 }
 
-#burger-btn-container{
-    position:absolute;
-    /* top: 0.2rem;
-    right: 0.3rem; */
-    top: 0.2rem;
-    right: 0.3rem;
-}
-
-#nav-bar-container{
-    margin-top:1rem;
-    width: 100%;
-    /* border: 2px solid red; */
-    
+.full{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #nav-links-container{
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.9s ease-in-out;
-    
+    padding: 1rem;
 }
 
-.nav-links{
+#nav-links-container>a{
     display: block;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin: 1.5rem 0;
+    font-size: 2rem;
     text-decoration: none;
-    transition: font-size 1s ease-in-out;
-    /* color: black; */
+    color: #fff;
 }
 
-.nav-links:hover{
-    font-size: 1.9rem;
+#action-btns-container>.action-btn{
+    margin: 1.5rem 0;
 }
 
-#nav-links-container>#action-btn{
-    transition: width 1s ease-in-out;
+#action-btns-container>.action-btn>a>button{
+    /* padding: 1rem 2.5rem; */
+    width: 100px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    border-color: transparent;
 }
 
-#nav-links-container>#action-btn:hover{
-    width: 150px;
+.action-btn>#login>button{
+    background-color: white;
+    color: black;
+}
+
+.action-btn>#signout>button{
+    background-color: #183EFA;
+    color: white;
+}
+
+.hides{
+    display: none;
 }
 
 @media screen and (min-width:800px){
-
-    #burger-btn-container{
-        display: none;
-    }
 
     .nav-links{
         display: inline-block; /*inline block respects height,width,padding and margins top,bottom,left and right*/
@@ -66,13 +71,35 @@
         margin-right: 1rem;
     } */
 
+    #nav-bar-container{
+        position: static;
+        display: flex;
+        flex-direction: row;
+        background-color: transparent;
+        align-items: center;
+    }
+
+    #action-btns-container>.action-btn{
+        margin: 0;
+    }
+
+    #nav-links-container>a{
+        display: inline-block;
+        margin: 0 1rem;
+        color: black;
+        font-size: 1.8rem;
+    }
+
+    #action-btns-container{
+        display: flex;
+        flex-direction: row;
+    }
+
     .btn-primary{
         margin: 0 0.5rem 0 1rem;
     }
 
     #nav-bar-container{
-        margin: 1rem;
-        width: auto;
     }
 
     #nav-links-container{
