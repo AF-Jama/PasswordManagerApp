@@ -11,7 +11,7 @@ const useSize = ()=>{
             // Sets window width to state 
             // setSize(window.innerWidth);
 
-            if(window.innerWidth>500){
+            if(window.innerWidth>500 && window.innerWidth<1000){
                 // triggered if width is greater than 500
                 setLimit(8);
                 setSize(window.innerWidth);
@@ -19,6 +19,7 @@ const useSize = ()=>{
             }
 
             if(window.innerWidth>1000){
+                // triggered if width is greater than 1000
                 setLimit(16);
                 setSize(window.innerWidth);
                 return;

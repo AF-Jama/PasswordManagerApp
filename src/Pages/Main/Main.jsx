@@ -115,11 +115,13 @@ const Main = (props)=>{
 
                     <div id="pagination-btns-container">
                         <div className="pagination-btn" id="pagination-btn-prev">
-                            <button>Prev</button>
+                            <button className={(page===1)?"disabled-left-arrow":"active"} onClick={()=>setPage(page-1)}>Prev</button>
                         </div>
 
+                        <p>{page}</p>
+
                         <div className="pagination-btn" id="pagination-btn-next">
-                            <button>Next</button>
+                            <button className={(!data?.next)?"disabled-right-arrow":"active"} onClick={()=>setPage(page+1)}>Next</button>
                         </div>
                     </div>
 
