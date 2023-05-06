@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -8,16 +9,21 @@
     --maxCardWidth:250px;
 }
 
-#card{
+#password-card{
     display:flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1rem 4rem;
     transition: box-shadow 1s ease-in-out;
+    position: relative;
+    width: 95%;
+    flex: 0 0 200px;
+    height: fit-content;
     /* background-color: #A1D960; */
 }
 
-#passwords-detail-container>p{
+/* #passwords-detail-container>p{
     border: 2px solid green;
 }
 
@@ -32,11 +38,33 @@
 #enc-dec-btn{
     position: relative;
     top: -10px;
+} */
+
+#password-details-container{
+    text-align: left;
+    margin: 0 0 0 1rem;
 }
 
-#card>button{
+#password-encrypted-string{
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+#password-card>button{
     /* width:100px;
     margin: 0 auto; */
+}
+
+#password-card>#lock{
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+}
+
+#bin-img{
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .card-shake{

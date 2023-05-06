@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -12,143 +14,110 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #D3D3D3;
 }
 
 #main-container{
     flex: 1;
     display: flex;
     flex-direction:column;
-    background-color: white;
+    background-color: #fff;
     margin-top: 1rem;
     transition: display 2s ease-in-out;
-    background-color: #60a1d9;
 }
 
-.password-action-btn{
-    color: black;
-}
 
-#add-btn,#delte-btn,#edit-btn{
-    height: 20px;
-    width: 30px;
-}
-
-#actions-container{
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5rem 1rem;
-}
-
-#passwords-container{
+#main-container>#inner-main-container{
     flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#password-card-container{
+    flex: 1;
+    /* background-color: red; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 1rem;
-    gap: 10px;
+    /* flex-basis: 200px; */
+    gap: 0 10px;
+    justify-content: center;
 }
 
-#passwords-container>#card{
-    width: 95%;
-    max-width: 300px;
-    height: 200px;
-    margin: 0 auto;
+#pagination-btns-container{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
 }
 
-#card>button{
-    width: 95%;
-    max-width: 100px;
-    margin: 0 auto;
-    border-radius: 10px;
+.pagination-btn>button{
+    padding: 1.5rem 3rem;
+    border-radius: 30px;
+    border: 0;
+    outline: 0;
+    background-color: #183EFA;
+    color: white;
+}
+
+#selection-btn{
+    padding: 0 1rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     outline: 0;
     border: 0;
-
+    background-color: red;
+    font-size: 3rem;
+    font-weight: 500;
+    color: white;
 }
 
-#arrow-action-container{
-    display:flex;
-    justify-content: space-between;
-    align-items:flex-end;
-    width: 90%;
-    max-width: var(--maxWidth);
-    margin: 1rem auto;
+#btn-show-selection-container{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
 }
 
-
-@keyframes loadingAnimation{
-    0%{
-        opacity: 1;
-    }
-    
-    50%{
-        opacity: 0.5;
-    }
-    
-    100%{
-        opacity:0;
-    }
+#selection-container{
+    transition: 1s;
 }
 
-#loading-title{
-    animation-name: loadingAnimation;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
+.collapse{
+    min-height: 0;
+    overflow: hidden;
 }
 
-.disabled-left-arrow,.disabled-right-arrow{
-    opacity: 0.6;
-    cursor: not-allowed;
-    pointer-events: none;
+#selection-container>a{
+    color: #000;
 }
 
-@media screen and (min-width:400px){
-
+.add-site-selection,.edit-site-selection,.delete-site-selection{
+    font-size: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
 }
 
-@media screen and (min-width:500px){
-    #main-container{
-        display: grid;
-        grid-template-columns: 1fr 75px;
-    }
-
-    #actions-container{
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 4;
-        display: flex;
-        flex-direction:column;
-        justify-content: space-between;
-        margin: 4rem 0;
-    }
-
-    #passwords-container{
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 3;
-    }
-
-    /* #passwords-container{
-        display: flex;
-        flex-direction: row;
-        height: 150px;
-        flex-wrap: wrap;
-    } */
-
-    #arrow-action-container{
-        grid-column-start: 1;
-        grid-column-end: 2;
-    }
-
-    #actions-container{
-    }
+.add-site-selection::before{
+    content: url('../../assets/add.svg');
+    margin: 0 0.5rem 0rem 0;
+    vertical-align: middle;
 }
 
-@media screen and (min-width:704px){
-    #passwords-container>#card{
-        margin: 0;
-    }
+.edit-site-selection::before{
+    content: url('../../assets/eidt.svg');
+    margin: 0 0.5rem 0rem 0;
+    vertical-align: middle;
 }
 
+.delete-site-selection::before{
+    content: url('../../assets/del.svg');
+    margin: 0 0.5rem 0rem 0;
+    vertical-align: middle;
+}
+
+@media screen and (min-width:514px){
+    #password-card-container{
+        justify-content: flex-start;
+    }
+}

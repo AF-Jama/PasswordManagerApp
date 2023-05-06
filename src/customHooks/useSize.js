@@ -14,9 +14,17 @@ const useSize = ()=>{
             if(window.innerWidth>500){
                 // triggered if width is greater than 500
                 setLimit(8);
+                setSize(window.innerWidth);
+                return;
+            }
+
+            if(window.innerWidth>1000){
+                setLimit(16);
+                setSize(window.innerWidth);
                 return;
             }
             setLimit(4);
+            setSize(window.innerWidth);
             return;
         }
         // Add event listener
@@ -25,9 +33,9 @@ const useSize = ()=>{
         handleResize();
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
-    }); // runs on initial render(on mount)
+    },[window.innerWidth]); // runs on initial render(on mount) and on dependency array change
 
-    return limit; // returns size state which represent window width 
+    return { size,limit }; // returns size state which represent window width 
 }
 
 
