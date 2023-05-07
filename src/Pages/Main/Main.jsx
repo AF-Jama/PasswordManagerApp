@@ -89,7 +89,7 @@ const Main = (props)=>{
     // console.log(user);
 
     console.log(`Size is ${size} and limit is ${l}`);
-    console.log(`Page is ${page}`);
+    // console.log(`Page is ${page}`);
 
     return (
         <div id="main-passwords-container">
