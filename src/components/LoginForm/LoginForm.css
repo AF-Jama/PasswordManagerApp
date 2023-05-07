@@ -4,10 +4,25 @@
     box-sizing: border-box;
 }
 
-form{
+#login-form-container{
     display: block;
     /* border: 2px solid purple; */
     padding: 1rem 0;
+}
+
+#login-form-container>.input-group>input{
+    border: 0;
+    outline: 0;
+}
+
+#login-form-container>#submit-btn{
+    padding: 1rem 2.7rem;
+    border-radius: 5px;
+    background-color: #183EFA !important;
+    max-width: 250px;
+    border: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
 }
 
 .input-group{

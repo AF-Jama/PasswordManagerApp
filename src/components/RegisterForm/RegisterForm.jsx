@@ -186,7 +186,7 @@ const RegisterForm = (props)=>{
     // console.log(authKey);
 
     return (
-        <form id="form-container" className= {active?'form-outer-container-shake':''} onSubmit={handleSubmit(onFormSubmit)}>
+        <form id="register-form-container" className= {active?'form-outer-container-shake':''} onSubmit={handleSubmit(onFormSubmit)}>
             <div className="input-group">
                 <input type="text" className="input-text-form" {...register('username',{
                     minLength:5,
@@ -194,7 +194,7 @@ const RegisterForm = (props)=>{
                     required:true,
                     // required:'Username is required',    
                     onChange:onUsernameChange,        
-                })} placeholder='username' />
+                })} placeholder='Username' />
                 <p>{errors.username?.message?"Username already used or invalid":""}</p>
             </div>
 
@@ -223,7 +223,6 @@ const RegisterForm = (props)=>{
 
             <input id="submit-btn" type="submit" value="Submit" ref={submitButtonRef}/>
             {active?<p onClick={onStopShaking}>Cannot create account, stop shaking here</p>:""}
-            <p className="login-text"><a href="/login">Already have an account? Login here</a></p>
         </form>
     )
 }

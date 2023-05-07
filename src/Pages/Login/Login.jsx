@@ -29,6 +29,8 @@ const Login = (props)=>{
                     <div id="login-form-container">
                         <LoginForm/>
                     </div>
+
+                    <p><a href="/signup">Dont have an account? <br/> Create Here</a></p>
                 </div>
             </main>
         </div>

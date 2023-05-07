@@ -27,9 +27,11 @@ const SignUp = ()=>{
                             <RegisterForm/>
                         </div>
                     </div>
-                    <div id="img-container">
+
+                    {/* <div id="img-container">
                         <img id="sign-up-page-image" src={passwordImage} alt="Password Signup Image" />
-                    </div>
+                    </div> */}
+                    <p className="login-text"><a href="/login">Already have an account? <br/> Login here</a></p>
                 </div>
             </main>
         </div>

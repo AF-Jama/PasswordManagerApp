@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -7,20 +8,22 @@
 
 :root{
     --maxWidth:1500px;
+    --signupCardContainer:400px;
 }
 
 #sign-up-container{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #001f3f;
+    background-color: #fff;
     /* border: 2px solid green; */
 }
 
-#main-outer-container{
-    display: grid;
-    place-items: center;
+#sign-up-container>main{
     flex: 1;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
     /* flex-direction: column;
     justify-content: center;
     flex: 1;
@@ -37,11 +40,15 @@
     display: none;
 }
 
-#main-inner-container{
-    width: 80%;
-    max-width: var(--cardMaxWidth) ;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 1 );
+#sign-up-container>main>#main-inner-container{
+    width: 90%;
+    max-width: var(--signupCardContainer) ;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 1 ); */
+    position: relative;
     padding: 4rem 2rem;
+    flex: 1;
+    margin: 4rem auto;
+    border-radius: 15px;
     /* position: relative;
     top: -100px; */
     /* border: 2px solid green; */
@@ -52,6 +59,11 @@
     width: auto;
 }
 
+#register-text-container>h2{
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+}
+
 #register-text-container::after{
     content: '';
     display: block;
@@ -59,6 +71,18 @@
     width: 50%;
     margin: 1rem auto;
     background-color: white;
+}
+
+#main-inner-container>.login-text{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#main-inner-container>.login-text>a{
+    color: #000;
+    font-size: 1.5rem;
 }
 
 
@@ -81,7 +105,7 @@
         margin-right: 1rem;
     } */
 
-    #main-inner-container{
+    /* #main-inner-container{
         display: flex;
         align-items: center;
     }
@@ -105,5 +129,5 @@
         object-position: center;
         border-radius: 5px;
         max-height: 100%;
-    }
+    } */
 }

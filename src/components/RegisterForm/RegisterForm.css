@@ -21,6 +21,11 @@
     /* border: 1px solid red; */
 }
 
+#register-form-container>.input-group>input{
+    border: 0;
+    outline: 0;
+}
+
 .input-group{
     display: block;
     width: auto ;
@@ -36,13 +41,16 @@
     color: black;
 }
 
-#submit-btn{
-    padding: 0.5rem 2.7rem;
+#register-form-container>#submit-btn{
+    padding: 1rem 2.7rem;
     border-radius: 5px;
-    background-color: #1A486E;
+    background-color: #183EFA !important;
     cursor:pointer;
     color: black;
+    max-width: 250px;
     border: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
 }
 
 #submit-btn:disabled{

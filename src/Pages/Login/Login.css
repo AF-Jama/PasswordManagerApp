@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -7,23 +8,28 @@
 :root{
     --maxWidth:1500px;
     --cardMaxWidth:700px;
+    --loginCardContainer:400px;
 }
 
 #logout-container{
     min-height: 100vh;
     display:flex;
     flex-direction:column;
-    background-color: #001f3f;
+    background-color: #fff;
 }
 
-main{
+#logout-container>main{
     flex:1;
+    display: flex;
+    flex-direction: column;
 }
 
-#main-outer-container{
-    display: grid;
-    place-items: center;
+#logout-container>main>#main-inner-container{
     flex: 1;
+    width: 95%;
+    max-width: var(--loginCardContainer);
+    padding: 4rem 2rem;
+    margin: 4rem auto;
     /* flex-direction: column;
     justify-content: center;
     margin-top: 2rem; */
@@ -33,8 +39,10 @@ main{
     height: auto;
     color: white;
     width: 95%;   
+    position: relative;
+    border-radius: 15px;
     max-width: var(--cardMaxWidth); 
-    box-shadow: 0 0 20px rgba(0, 0, 0, 1 );
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 1 ); */
     /* animation: shakeCard 0.5s;
     animation-iteration-count: infinite; */
 }
@@ -47,7 +55,9 @@ main{
 }
 
 #welcome-container>h2{
-    font-weight: bold;
+    color: #000;
+    /* font-weight: bold; */
+    font-family: 'Roboto', sans-serif;
 }
 
 #welcome-container>h2::after{
@@ -58,6 +68,15 @@ main{
     background-color: white;
     margin: 0rem auto;
     margin-top: 1rem;
+}
+
+#main-inner-container>p>a{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    color: #000;
+    font-size: 1.5rem;
 }
 
 @keyframes shakeCard {

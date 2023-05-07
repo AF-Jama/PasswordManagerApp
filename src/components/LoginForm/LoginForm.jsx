@@ -123,7 +123,7 @@ const LoginForm = (props)=>{
     }
 
     return (
-        <form id="form-outer-container" className={active?"form-outer-container-shake":""} onSubmit={handleSubmit(onFormSubmit)} ref={loginFormRef}>
+        <form id="login-form-container" className={active?"form-outer-container-shake":""} onSubmit={handleSubmit(onFormSubmit)} ref={loginFormRef}>
             <div className="input-group">
                 <input className="input-text-form" {...register('email',{
                     required:'email is required',
@@ -132,7 +132,7 @@ const LoginForm = (props)=>{
                         message:"Should be a valid email"
                     },
                     onChange:onEmailChange
-                })} placeholder='email' />
+                })} placeholder='Email' />
                 <p>{errors.email?.message}</p>
             </div>
             <div className="input-group">
@@ -145,7 +145,6 @@ const LoginForm = (props)=>{
                 <p>{errors.master_password?.message}</p>
             </div>
             <input id="submit-btn" type="submit" value='Login'/>
-            <p><a href="/signup">Dont have an account? Create Here</a></p>
             {active?<p onClick={onStopShaking}>Cannot log in, stop shaking here</p>:null}
         </form>
     )
