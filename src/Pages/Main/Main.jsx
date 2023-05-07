@@ -72,13 +72,13 @@ const Main = (props)=>{
     // if(data && data.results.length===0 && page!==1){
     // }
 
-    if(page>1 && data.results.length===0){
-        console.log("TRIGGERED DATA ON DOES NOT EXIST");
-        console.log(data.results)
-        console.log(`Page is ${page}`);
-        setPage(page-1);
-        // setEndpoint(`/passwords/getPasswords?page=${page-1}&limit=${limit}`);
-    }
+    // if(page>1 && data.results.length===0){
+    //     console.log("TRIGGERED DATA ON DOES NOT EXISTww");
+    //     console.log(data.results)
+    //     console.log(`Page is ${page}`);
+    //     setPage(page-1);
+    //     // setEndpoint(`/passwords/getPasswords?page=${page-1}&limit=${limit}`);
+    // }
 
     // console.log(page)
     // console.log(endpoint)
@@ -89,6 +89,7 @@ const Main = (props)=>{
     // console.log(user);
 
     console.log(`Size is ${size} and limit is ${l}`);
+    console.log(`Page is ${page}`);
 
     return (
         <div id="main-passwords-container">
@@ -109,8 +110,8 @@ const Main = (props)=>{
                     <div id="password-card-container">
                         {(!data && (error||loading)) && <h4>Loading...</h4>}
                         {(data && data.msg==="Access token is not valid") && <h4>{data.msg}</h4>}
-                        {(data && data.results && data.results.length===0 && page===1) && <h4>No authenticated passwords on your account</h4>}
-                        {(data && data.results) && createCards(data)}
+                        {(data && data?.results && data?.results.length===0 && page===1) && <h4>No authenticated passwords on your account</h4>}
+                        {(data && data?.results && data?.results.length>0) && createCards(data)}
                     </div>
 
                     <div id="pagination-btns-container">
