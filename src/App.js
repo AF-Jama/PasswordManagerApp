@@ -13,6 +13,7 @@ import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import NavBar from './components/common/NavBar';
 import Header from './components/common/Header';
+import PasswordPage from './Pages/PasswordPage';
 import './App.css';
 
 // const uri='http://localhost:3000/'
@@ -27,6 +28,7 @@ function App() {
         <Route path='/passwords' element={<Main/>}/>
         <Route path='/card' element={<Card/>}/>
         <Route path='/passwords/add' element={<Add/>}/>
+        <Route path='/passwordPage' element={<PasswordPage/>}/>
       </Routes>
     </div>
   );

@@ -5,6 +5,7 @@ import { faEyeSlash,faEye } from "@fortawesome/free-solid-svg-icons";
 import encPasswordLock from '../../assets/enc-lock.svg';
 import binImage from '../../assets/del.svg';
 import ActionButton from "../common/ActionButton";
+import { useNavigate } from "react-router";
 import useAuth from "../../customHooks/auth";
 import './Card.css';
 
@@ -13,6 +14,8 @@ const Card = (props)=>{
     const [revealStatus,setRevealStatus] = useState(false); // sets reveal status
     const [del,setDeleteStatus] = useState(false); 
     const { masterPassword } = useAuth();
+
+    const navigate = useNavigate();
 
     const onClick = (event)=>{
         // triggered on click
@@ -44,7 +47,11 @@ const Card = (props)=>{
                 <p id="password-encrypted-string">{props.encPassword.substring(0,8) + "..."}</p>     
             </div>
 
-            <img className="action-img" id="lock" src={encPasswordLock} alt="" />
+            <img className="action-img" id="lock" src={encPasswordLock} alt="" onClick={(e)=>navigate(`/passwordPage?siteName=${props.siteName}`,{state:{
+                siteName:props.siteName,
+                encPassword:props.encPassword,
+                siteImage:`https://logo.clearbit.com/${props.siteName}.com?size=200`
+            }})} />
             {props.delMethod?<img id="bin-img" src={binImage} alt="" />:""}
         </div>
     )
