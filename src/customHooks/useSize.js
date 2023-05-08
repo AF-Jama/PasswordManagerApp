@@ -2,7 +2,7 @@ import React,{useState,useEffect,useContext} from "react";
 
 
 const useSize = ()=>{
-    const [size,setSize] = useState(null); // sets viewport size width state 
+    const [size,setSize] = useState(window.innerWidth); // sets viewport size width state 
     const [limit,setLimit] = useState(4) // sets limit state 
 
     useEffect(()=>{
