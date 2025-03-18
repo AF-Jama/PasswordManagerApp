@@ -26,7 +26,7 @@ const Main = (props)=>{
     const [selectionBtnState,setSelectionBtnState] = useState(false);
     // const limit = useSize();
     // const [endpoint,setEndpoint] = useState(`/passwords/getPasswords?page=${page}&limit=${limit}`); // sets endpoint state 
-    const { data,loading,error,refetch } = useFetch(`http://54.84.156.236:5050/passwords/getPasswords?page=${page}&limit=${l}`);
+    const { data,loading,error,refetch } = useFetch(`http://18.212.164.56:5050/passwords/getPasswords?page=${page}&limit=${l}`);
 
     const createCards = (data)=>{
         // takes data and creates card 
@@ -49,7 +49,7 @@ const Main = (props)=>{
         // fetch(`/passwords/deletePassword/${passwordKey}`,{
         //     method:"DELETE"
         // }).then(res=>console.log("Clicked"))
-        fetch(`http://54.84.156.236:5050/passwords/deletePassword/${passwordKey}`,{
+        fetch(`http://18.212.164.56:5050/passwords/deletePassword/${passwordKey}`,{
             method:"DELETE",
             headers:{
                 'Authorization': token // sets Authorization header to json web token(JWT) which will be verified server side
