@@ -14,7 +14,7 @@ const checkUsernameExists = async (req,res)=>{
     console.log(username)
 
     try{
-        await prisma.User.findUniqueOrThrow({
+        await prisma.user.findUniqueOrThrow({
             where:{
                 userName:username
             }
